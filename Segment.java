@@ -140,6 +140,8 @@ public class Segment extends OpenFigure {
 				if (arr1[0] * arr1[k] < 0) {
 					checker = false;
 					break;
+
+
 				}
 
 				if (arr2[0] * arr2[k] < 0) {
