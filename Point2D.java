@@ -23,10 +23,8 @@ public class Point2D extends Point {
 			angle = Math.PI - Math.asin(p.getX(1) / p.abs());
 		}
 
-		p.setX(0, p.abs() * Math.cos(angle + phi));
-		p.setX(1, p.abs() * Math.sin(angle + phi));
-
-		return p;
+		Point2D pp = new Point2D(p.abs() * Math.cos(angle + phi), p.abs() * Math.sin(angle + phi));
+		return pp;
 	}
 
 	public Point2D rot(double phi) throws Exception {
@@ -39,8 +37,11 @@ public class Point2D extends Point {
             angle = Math.PI - Math.asin(x[1] / abs());
         }
 
-        x[0] = abs() * Math.cos(angle + phi);
-        x[1] = abs() * Math.sin(angle + phi);
+		double xx = abs() * Math.cos(angle + phi);
+		double yy = abs() * Math.sin(angle + phi);
+
+		x[0] = xx;
+		x[1] = yy;
 
         return this;
     }

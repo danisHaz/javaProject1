@@ -74,12 +74,17 @@ public class Segment extends OpenFigure {
 
 			if (Math.abs(p1.getX(0) * p2.getX(0) + p1.getX(1) * p2.getX(1) - p1.abs() * p2.abs()) <= 0.001) {
 				Point2D additionalPoint = new Point2D(x3 - x1, y3 - y1);
-				if (Math.abs(
+				if ((Math.abs(
 						p1.getX(0) * additionalPoint.getX(0)
 						+ p1.getX(1) * additionalPoint.getX(1)
 						- p1.abs() * additionalPoint.abs()
-					) <= 0.001
-					&& (x1 <= x3 && x3 <= x2 || x1 <= x4 && x4 <= x2)) {
+					) <= 0.001 ||
+					Math.abs(
+						p1.getX(0) * additionalPoint.getX(0)
+						+ p1.getX(1) * additionalPoint.getX(1)
+						+ p1.abs() * additionalPoint.abs()
+					) <= 0.001)
+					&& (x1 <= x3 && x3 <= x2 || x1 <= x4 && x4 <= x2 || x2 <= x3 && x3 <= x1 || x2 <= x4 && x4 <= x1)) {
 					return true;
 				} else {
 					return false;
