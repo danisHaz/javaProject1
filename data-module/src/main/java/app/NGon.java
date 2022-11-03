@@ -7,6 +7,7 @@ public class NGon implements IShape {
 	protected Point2D[] p;
 	protected String type;
 
+	@Override
 	public String getType() { return type; }
 
 	public NGon(Point2D[] p) throws Exception {

@@ -5,6 +5,7 @@ public class Polyline extends OpenFigure {
 	private Point2D[] p;
 	private String type;
 
+	@Override
 	public String getType() { return type; }
 
 	public Polyline(Point2D[] p) throws Exception {

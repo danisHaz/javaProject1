@@ -5,6 +5,7 @@ public class Segment extends OpenFigure {
 	private Point2D finish;
 	private String type;
 
+	@Override
 	public String getType() { return type; }
 
 	public Segment(Point2D a, Point2D b) throws Exception {

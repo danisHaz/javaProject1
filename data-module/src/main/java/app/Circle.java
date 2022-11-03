@@ -7,6 +7,7 @@ public class Circle implements IShape {
 	private double r;
 	private String type;
 
+	@Override
 	public String getType() { return type; }
 	
 	public Circle(Point2D p, double r) throws Exception {
