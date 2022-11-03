@@ -1,6 +1,6 @@
-# Первый проект из семестровой по Жабе
+# First project
 
-Тут исходники, которые можно скачать для того, чтобы пользоваться благами Великой java.
+## How to
 
-## Что сделать, чтобы поставить себе:
-1. 
+Nothing to do, it's just console application so just run Main class. And that's it.
+It simply uses java 11, so just don't forget to install appropriate jdk, jvm and jre...
