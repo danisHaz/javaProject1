@@ -14,6 +14,7 @@ public class CrossChecking {
 	private Stage stage;
 	private Pane root;
 	private MainController mController;
+	private String fxmlDocPath = "./src/main/java/ui/CrossChecking.fxml";
 
 	public Stage getStage() { return stage; }
 	public Pane getPane() { return root; }
@@ -23,7 +24,6 @@ public class CrossChecking {
 		this.mController = mController;
 		stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		String fxmlDocPath = "CrossChecking.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
 		CrossCheckingController controller = new CrossCheckingController(this);
 		loader.setController(controller);

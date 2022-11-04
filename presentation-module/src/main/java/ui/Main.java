@@ -21,7 +21,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		String fxmlDocPath = "Main.fxml";
+		String fxmlDocPath = "./src/main/java/ui/Main.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
 		loader.setController(new MainController(this));
 		root = (Pane) loader.load(fxmlStream);

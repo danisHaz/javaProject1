@@ -14,6 +14,7 @@ public class FigureAddition {
 	private Stage stage;
 	private Pane root;
 	private MainController mController;
+	private String fxmlDocPath = "./src/main/java/ui/FigureAddition.fxml";
 
 	public Stage getStage() { return stage; }
 	public Pane getPane() { return root; }
@@ -23,7 +24,6 @@ public class FigureAddition {
 		this.mController = mController;
 		stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		String fxmlDocPath = "FigureAddition.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
 		FigureAdditionController controller = new FigureAdditionController(this);
 		loader.setController(controller);

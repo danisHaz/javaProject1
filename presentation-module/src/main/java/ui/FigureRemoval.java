@@ -14,6 +14,7 @@ public class FigureRemoval {
 	private Stage stage;
 	private Pane root;
 	private MainController mController;
+	private String fxmlDocPath = "./src/main/java/ui/FigureRemoval.fxml";
 
 	public Stage getStage() { return stage; }
 	public Pane getPane() { return root; }
@@ -23,7 +24,6 @@ public class FigureRemoval {
 		this.mController = mController;
 		stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		String fxmlDocPath = "FigureRemoval.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
 		FigureRemovalController controller = new FigureRemovalController(this);
 		loader.setController(controller);

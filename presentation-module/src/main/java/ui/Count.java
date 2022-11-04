@@ -14,6 +14,7 @@ public class Count {
 	private Stage stage;
 	private Pane root;
 	private MainController mController;
+	private String fxmlDocPath = "./src/main/java/ui/Count.fxml";
 
 	public Stage getStage() { return stage; }
 	public Pane getPane() { return root; }
@@ -23,7 +24,6 @@ public class Count {
 		this.mController = mController;
 		stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		String fxmlDocPath = "Count.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
 		CountController controller = new CountController(this, type);
 		loader.setController(controller);

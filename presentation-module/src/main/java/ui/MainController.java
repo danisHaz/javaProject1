@@ -35,11 +35,12 @@ public class MainController {
 		add("Shift");
 	}};
 	
-	private final String fileName = "C:/Users/Danis/Documents/ToCode/java_semestr2/textFile.txt";
+	private final String fileName = "./src/main/java/ui/figures.txt";
+	private final String pngFilePath = "./src/main/java/ui/snapshot.png";
 	private Main mInst;
 
 	@FXML
-    private Canvas canvas; 
+    private Canvas canvas;
 
 	public static List<IShape> list = new ArrayList<>();
 	public static List<String> types = new ArrayList<>();
@@ -241,7 +242,6 @@ public class MainController {
 	public void addCircle(double[] coords) throws Exception {
 		double r = coords[2];
 		Point2D point = new Point2D(coords[0], coords[1]);
-		System.out.printf("ababsda %.2f, %.2f\n", coords[0], coords[1]);
 		addToListAndDraw(new Circle(point, r));
 	}
 
@@ -361,7 +361,7 @@ public class MainController {
 		sp.setFill(Color.TRANSPARENT);
 		WritableImage wi = new WritableImage((int)(canvas.getHeight()), (int)(canvas.getWidth()));
 		Image img = canvas.snapshot(null, wi);
-		File file = new File("C:/Users/Danis/Documents/ToCode/java_semestr2/model.png");
+		File file = new File(pngFilePath);
 		BufferedImage bufImg = SwingFXUtils.fromFXImage(img, null);
 		try {
 			ImageIO.write(bufImg, "png", file);

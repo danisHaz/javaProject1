@@ -1,5 +1,4 @@
 plugins {
-    id 'java-library'
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.13'
@@ -9,6 +8,8 @@ javafx {
     version = "16"
     modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.swing' ]
 }
+
+mainClassName = 'ui.Main'
 
 dependencies {
     implementation project(':data-module')

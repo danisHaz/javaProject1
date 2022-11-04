@@ -14,6 +14,7 @@ public class DragFigure {
 	private Stage stage;
 	private Pane root;
 	private MainController mController;
+	private String fxmlDocPath = "./src/main/java/ui/DragFigure.fxml";
 
 	public Stage getStage() { return stage; }
 	public Pane getPane() { return root; }
@@ -23,7 +24,6 @@ public class DragFigure {
 		this.mController = mController;
 		stage = new Stage();
 		FXMLLoader loader = new FXMLLoader();
-		String fxmlDocPath = "DragFigure.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
 		DragFigureController controller = new DragFigureController(this);
 		loader.setController(controller);

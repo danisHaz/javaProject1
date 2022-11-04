@@ -1,4 +1,4 @@
 rootProject.name = "java_geometry_example"
 
-include 'data-module'
 include 'presentation-module'
+include 'data-module'
