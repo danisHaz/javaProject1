@@ -24,8 +24,13 @@ subprojects {
 }
 
 tasks.register('runUi') {
+    dependsOn ':data-module:build'
+    dependsOn ':data-module:test'
+    dependsOn ':presentation-module:build'
     dependsOn ':presentation-module:run'
 }
+
+defaultTasks 'runUi'
 
 // task wrapper(type: Wrapper) {
 //     gradleVersion = '7.4.2'

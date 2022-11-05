@@ -10,11 +10,9 @@ public class Polyline extends OpenFigure {
 
 	public Polyline(Point2D[] p) throws Exception {
 		for (int i = 0; i < p.length; i++) {
-			double revert = -p[i].getX(1);
-			p[i].setX(1, revert);
+			this.p[i] = new Point2D(p[i].getX(0) ,p[i].getX(1));
 		}
 		this.n = p.length;
-		this.p = p;
 		type = "Polyline";
 	}
 
@@ -58,7 +56,6 @@ public class Polyline extends OpenFigure {
 
 	@Override
 	public Polyline shift(Point2D a) throws Exception {
-		a.setX(1, -a.getX(1));
 		for (int i = 0; i < n; i++) {
 			p[i].add(a);
 		}

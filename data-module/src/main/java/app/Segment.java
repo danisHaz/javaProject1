@@ -12,8 +12,8 @@ public class Segment extends OpenFigure {
 		if (a.getX(0) == b.getX(0) && a.getX(1) == b.getX(1)) {
 			throw new Exception("Segment: Start and finish are the same point\n");
 		}
-		start = new Point2D(a.getX(0), -a.getX(1));
-		finish = new Point2D(b.getX(0), -b.getX(1));
+		start = new Point2D(a.getX(0), a.getX(1));
+		finish = new Point2D(b.getX(0), b.getX(1));
 		type = "Segment";
 	}
 
@@ -40,7 +40,7 @@ public class Segment extends OpenFigure {
 
 	@Override
 	public Segment shift(Point2D a) throws Exception {
-		a.setX(1, -a.getX(1));
+		a.setX(1, a.getX(1));
 		start.add(a);
 		finish.add(a);
 		return this;

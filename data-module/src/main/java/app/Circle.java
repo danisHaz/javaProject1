@@ -11,7 +11,7 @@ public class Circle implements IShape {
 	public String getType() { return type; }
 	
 	public Circle(Point2D p, double r) throws Exception {
-		this.p = new Point2D(p.getX(0), -p.getX(1));
+		this.p = new Point2D(p.getX(0), p.getX(1));
 		this.r = r;
 		
 		type = "Circle"; 
@@ -45,7 +45,6 @@ public class Circle implements IShape {
 
 	@Override
 	public Circle shift(Point2D a) throws Exception {
-		a.setX(1, -a.getX(1));
 		p.add(a);
 		return this;
 	}

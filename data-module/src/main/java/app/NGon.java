@@ -16,7 +16,7 @@ public class NGon implements IShape {
 		this.n = p.length;
 		this.p = new Point2D[p.length];
 		for (int i = 0; i < n; i++) {
-			this.p[i] = new Point2D(p[i].getX(0), -p[i].getX(1));
+			this.p[i] = new Point2D(p[i].getX(0), p[i].getX(1));
 		}
 		type = "NGon";
 	}
@@ -76,7 +76,7 @@ public class NGon implements IShape {
 
 	@Override
 	public NGon shift(Point2D p) throws Exception {
-		Point2D pp = new Point2D(p.getX(0), -p.getX(1));
+		Point2D pp = new Point2D(p.getX(0), p.getX(1));
 		for (int i = 0; i < n; i++) {
 			this.p[i].add(pp);
 		}
@@ -109,14 +109,12 @@ public class NGon implements IShape {
 		for (int i = 1; i < n; i++) {
 			seg = new Segment(p[i - 1], p[i]);
 			if (seg.cross(shape)) {
-				System.out.println(seg.toString());
 				return true;
 			}
 		}
 
 		seg = new Segment(p[n - 1], p[0]);
 		if (seg.cross(shape)){
-			System.out.println(seg.toString());
 			return true;
 		}
 
