@@ -1,6 +1,5 @@
 subprojects {
 
-    apply plugin: 'java-library'
     apply plugin: 'application'
     apply plugin: 'java'
     // In this section you declare where to find the dependencies of your project
@@ -22,6 +21,10 @@ subprojects {
         useJUnitPlatform() 
     }
 
+}
+
+tasks.register('runUi') {
+    dependsOn ':presentation-module:run'
 }
 
 // task wrapper(type: Wrapper) {
