@@ -9,8 +9,9 @@ public class Polyline extends OpenFigure {
 	public String getType() { return type; }
 
 	public Polyline(Point2D[] p) throws Exception {
+		this.p = new Point2D[p.length];
 		for (int i = 0; i < p.length; i++) {
-			this.p[i] = new Point2D(p[i].getX(0) ,p[i].getX(1));
+			this.p[i] = new Point2D(p[i].getX(0), p[i].getX(1));
 		}
 		this.n = p.length;
 		type = "Polyline";
