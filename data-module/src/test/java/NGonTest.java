@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -40,6 +41,25 @@ public class NGonTest {
         String testName = "ngon square";
         try {
             assertTrue(testName, String.format("%.2f", ngon.square()).equals("5.00"));
+        } catch (Exception e) {
+            assertTrue(testName, false);
+        }
+    }
+
+    @Test
+    public void checkCross() {
+        String testName = "ngon shift";
+        try {
+            Point2D[] points1 = new Point2D[] {
+                new Point2D(-2, 1),
+                new Point2D(-3, 1),
+                new Point2D(-4, 0),
+                new Point2D(-5, -2),
+                new Point2D(-1, 0)
+            };
+            NGon ngon1 = new NGon(points1);
+            assertFalse(testName, ngon.cross(ngon1));
+            double rotAngle = Math.PI;
         } catch (Exception e) {
             assertTrue(testName, false);
         }
