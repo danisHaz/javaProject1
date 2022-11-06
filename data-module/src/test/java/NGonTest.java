@@ -29,7 +29,17 @@ public class NGonTest {
     public void checkLength() {
         String testName = "ngon length";
         try {
-            assertTrue(testName, String.format("%.4f", ngon.length()) == "10.5366");
+            assertTrue(testName, String.format("%.2f", ngon.length()).equals("10.54"));
+        } catch (Exception e) {
+            assertTrue(testName, false);
+        }
+    }
+
+    @Test
+    public void checkSquare() {
+        String testName = "ngon square";
+        try {
+            assertTrue(testName, String.format("%.2f", ngon.square()).equals("5.00"));
         } catch (Exception e) {
             assertTrue(testName, false);
         }
