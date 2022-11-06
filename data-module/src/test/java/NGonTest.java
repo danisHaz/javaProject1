@@ -58,8 +58,11 @@ public class NGonTest {
                 new Point2D(-1, 0)
             };
             NGon ngon1 = new NGon(points1);
-            assertFalse(testName, ngon.cross(ngon1));
-            double rotAngle = Math.PI;
+            // assertTrue(testName, ngon.cross(ngon1));
+
+            double rotAngle = -Math.PI;
+            ngon1.rot(rotAngle);
+            assertTrue(testName, ngon.cross(ngon1));
         } catch (Exception e) {
             assertTrue(testName, false);
         }

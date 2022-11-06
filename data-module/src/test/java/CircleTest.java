@@ -54,12 +54,13 @@ public class CircleTest {
 
     @Test
     public void checkCross() {
-        String testName = "circle shift";
+        String testName = "circle cross";
         try {
             Point2D center1 = new Point2D(1, -2);
             double radius1 = 2;
             Circle circle1 = new Circle(center1, radius1);
             assertTrue(testName, circle.cross(circle1));
+            
             radius1 = 1;
             circle1.setR(radius1);
             assertFalse(testName, circle.cross(circle1));
