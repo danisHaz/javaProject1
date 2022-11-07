@@ -21,7 +21,7 @@ public class NGonTest {
             };
             ngon = new NGon(points);
         } catch (Exception e) {
-            // pass
+            e.printStackTrace();
         }
     }
 
@@ -31,6 +31,7 @@ public class NGonTest {
         try {
             assertTrue(testName, String.format("%.2f", ngon.length()).equals("10.54"));
         } catch (Exception e) {
+            e.printStackTrace();
             assertTrue(testName, false);
         }
     }
@@ -41,6 +42,7 @@ public class NGonTest {
         try {
             assertTrue(testName, String.format("%.2f", ngon.square()).equals("5.00"));
         } catch (Exception e) {
+            e.printStackTrace();
             assertTrue(testName, false);
         }
     }
@@ -63,6 +65,7 @@ public class NGonTest {
             ngon1.rot(rotAngle);
             assertTrue(testName, ngon.cross(ngon1));
         } catch (Exception e) {
+            e.printStackTrace();
             assertTrue(testName, false);
         }
     }

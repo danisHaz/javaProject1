@@ -16,7 +16,7 @@ public class CircleTest {
             center = new Point2D(1, 2);
             circle = new Circle(center, radius);
         } catch (Exception e) {
-            // pass
+            e.printStackTrace();
         }
     }
 
@@ -26,6 +26,7 @@ public class CircleTest {
         try {
             assertTrue(testName, circle.square() == Math.PI * radius * radius);
         } catch (Exception e) {
+            e.printStackTrace();
             assertTrue(testName, false);
         }
     }
@@ -36,6 +37,7 @@ public class CircleTest {
         try {
             assertTrue(testName, circle.length() == Math.PI * 2 * radius);
         } catch (Exception e) {
+            e.printStackTrace();
             assertTrue(testName, false);
         }
     }
@@ -48,6 +50,7 @@ public class CircleTest {
             circle.shift(shiftVec);
             assertTrue(testName, circle.getP().getX(0) == 2 && circle.getP().getX(1) == 0);
         } catch (Exception e) {
+            e.printStackTrace();
             assertTrue(testName, false);
         }
     }
@@ -65,6 +68,7 @@ public class CircleTest {
             circle1.setR(radius1);
             assertFalse(testName, circle.cross(circle1));
         } catch (Exception e) {
+            e.printStackTrace();
             assertTrue(testName, false);
         }
     }

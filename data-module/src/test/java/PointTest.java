@@ -29,6 +29,7 @@ public class PointTest {
             assertTrue(testName, String.format("%.4f", Point.add(point, point).abs()).equals("14.8324"));
         } catch (Exception e) {
             e.printStackTrace();
+            assertTrue(testName, false);
         }
     }
 
@@ -39,6 +40,7 @@ public class PointTest {
             assertTrue(testName, String.format("%.2f", Point.sub(point, point).abs()).equals("0.00"));
         } catch (Exception e) {
             e.printStackTrace();
+            assertTrue(testName, false);
         }
     }
 
@@ -49,6 +51,7 @@ public class PointTest {
             assertTrue(testName, String.format("%.4f", Point.mult(point, 3).abs()).equals("22.2486"));
         } catch (Exception e) {
             e.printStackTrace();
+            assertTrue(testName, false);
         }
     }
 }

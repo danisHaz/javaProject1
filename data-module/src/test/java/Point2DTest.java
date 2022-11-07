@@ -25,6 +25,7 @@ public class Point2DTest {
             assertTrue(testName, String.format("%.4f", Point2D.add(point, point).abs()).equals("6.3246"));
         } catch (Exception e) {
             e.printStackTrace();
+            assertTrue(testName, false);
         }
     }
 }
