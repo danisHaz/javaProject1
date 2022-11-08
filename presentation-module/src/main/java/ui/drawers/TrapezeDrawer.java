@@ -6,7 +6,7 @@ import app.Trapeze;
 import javafx.scene.canvas.GraphicsContext;
 
 public final class TrapezeDrawer implements Drawer {
-    
+
     private static TrapezeDrawer drawer = null;
     private final String className = Trapeze.class.getName();
 
@@ -23,7 +23,7 @@ public final class TrapezeDrawer implements Drawer {
 		double[] ycoords = new double[n];
 		for (int i = 0; i < n; i++) {
 			xcoords[i] = trapeze.getP()[i].getX(0) + centerX;
-			ycoords[i] = trapeze.getP()[i].getX(1) + centerY;
+			ycoords[i] = -trapeze.getP()[i].getX(1) + centerY;
 		}
 
 		gc.strokePolygon(xcoords, ycoords, n);

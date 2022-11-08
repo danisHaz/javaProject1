@@ -20,8 +20,8 @@ public final class PolylineDrawer implements Drawer {
         Polyline polyline = (Polyline) shape;
         int n = polyline.getN();
         for (int i = 1; i < n; i++) {
-			gc.strokeLine(polyline.getP()[i - 1].getX(0) + centerX, polyline.getP()[i - 1].getX(1) + centerY,
-                polyline.getP()[i].getX(0) + centerX, polyline.getP()[i].getX(1) + centerY);
+			gc.strokeLine(polyline.getP()[i - 1].getX(0) + centerX, -polyline.getP()[i - 1].getX(1) + centerY,
+                polyline.getP()[i].getX(0) + centerX, -polyline.getP()[i].getX(1) + centerY);
         }
     }
 

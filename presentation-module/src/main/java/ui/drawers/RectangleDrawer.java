@@ -23,7 +23,7 @@ public final class RectangleDrawer implements Drawer {
 		double[] ycoords = new double[n];
 		for (int i = 0; i < n; i++) {
 			xcoords[i] = rectangle.getP()[i].getX(0) + centerX;
-			ycoords[i] = rectangle.getP()[i].getX(1) + centerY;
+			ycoords[i] = -rectangle.getP()[i].getX(1) + centerY;
 		}
 
 		gc.strokePolygon(xcoords, ycoords, n);

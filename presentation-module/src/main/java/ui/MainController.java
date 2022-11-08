@@ -4,7 +4,6 @@ import ui.drawers.DrawerFactory;
 
 import app.*;
 
-import java.util.TreeSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -28,37 +27,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class MainController {
-
-	public static TreeSet<String> moves = new TreeSet<String>() {{
-		add("Rot");
-		add("SymAxis");
-		add("Shift");
-	}};
 	
 	private final String fileName = "./src/main/java/ui/figures.txt";
 	private final String pngFilePath = "./src/main/java/ui/snapshot.png";
 	private Main mInst;
+
+	private final int answerLayoutX = 450;
+	private final int answerLayoutY = 270;
+	private TextField answer = null;
 
 	@FXML
     private Canvas canvas;
 
 	public static List<IShape> list = new ArrayList<>();
 	public static List<String> types = new ArrayList<>();
-
-	private void writeToFile() {
-		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-			writer.write(list.size());
-			writer.write("\n");
-			for (int i = 0; i < list.size(); i++) {
-				writer.write(list.get(i).toString());
-				writer.write("\n");
-			}
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public void showAlert() {
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -88,155 +70,53 @@ public class MainController {
 			e.printStackTrace();
 		}
 
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
-		gc.setStroke(Color.GREY);
-		gc.strokeLine(200.0, 0.0, 200.0, 400.0);
-		gc.strokeLine(0.0, 200.0, 400.0, 200.0);
-		gc.setStroke(Color.BLACK);
-
-		for (int i = 0; i < list.size(); i++) {
-			try {
-				if (i == pos) {
-					gc.setStroke(Color.RED);
-					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
-					gc.setStroke(Color.BLACK);
-				} else {
-					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void removeAll() {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-		list = new ArrayList<IShape>();
-
-		gc.setStroke(Color.GREY);
-		gc.strokeLine(200.0, 0.0, 200.0, 400.0);
-		gc.strokeLine(0.0, 200.0, 400.0, 200.0);
-		gc.setStroke(Color.BLACK);
+		clearCanvasAndDrawAll(canvas.getGraphicsContext2D(), new IShape[] {list.get(pos)});
 	}
 
 	// callback func
 	public void countByPos(int pos, boolean type) {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+		clearCanvasAndDrawAll(canvas.getGraphicsContext2D(), new IShape[] {list.get(pos)});
 
-		gc.setStroke(Color.GREY);
-		gc.strokeLine(200.0, 0.0, 200.0, 400.0);
-		gc.strokeLine(0.0, 200.0, 400.0, 200.0);
-		gc.setStroke(Color.BLACK);
-
-		for (int i = 0; i < list.size(); i++) {
-			try {
-				if (i == pos) {
-					gc.setStroke(Color.RED);
-					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
-					gc.setStroke(Color.BLACK);
-				} else {
-					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		TextField field = new TextField();
-		field.setLayoutX(450.0);
-		field.setLayoutY(270.0);
+		answer = new TextField();
+		answer.setLayoutX(answerLayoutX);
+		answer.setLayoutY(answerLayoutY);
+		double res = 0.0;
 		try {
 			if (!type)
-				field.setText(String.valueOf(list.get(pos).length()));
+				res = list.get(pos).length();
 			else
-				field.setText(String.valueOf(list.get(pos).square()));
+				res = list.get(pos).square();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		mInst.getPane().getChildren().addAll(field);
+		answer.setText(String.valueOf(res));
+		mInst.getPane().getChildren().addAll(answer);
 	}
 
 	// callback func
 	public void setIfCross(IShape first, IShape second) {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+		clearCanvasAndDrawAll(canvas.getGraphicsContext2D(), new IShape[] {first, second});
 
-		gc.setStroke(Color.GREY);
-		gc.strokeLine(200.0, 0.0, 200.0, 400.0);
-		gc.strokeLine(0.0, 200.0, 400.0, 200.0);
-		gc.setStroke(Color.BLACK);
-
-		for (int i = 0; i < list.size(); i++) {
-			try {
-				if (first.toString().equals(list.get(i).toString())) {
-					gc.setStroke(Color.RED);
-					DrawerFactory.create(first).draw(first, gc);
-					gc.setStroke(Color.BLACK);
-				} else {
-					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			try {
-				if (second.toString().equals(list.get(i).toString())) {
-					gc.setStroke(Color.RED);
-					DrawerFactory.create(second).draw(second, gc);
-					gc.setStroke(Color.BLACK);
-				} else {
-					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		TextField field = new TextField();
-		field.setLayoutX(450.0);
-		field.setLayoutY(270.0);
+		answer = new TextField();
+		answer.setLayoutX(answerLayoutX);
+		answer.setLayoutY(answerLayoutY);
 		try {
 			if (first.cross(second))
-				field.setText("Cross");
+				answer.setText("Cross");
 			else
-				field.setText("Not Cross");
+				answer.setText("Not Cross");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		mInst.getPane().getChildren().addAll(field);
+		mInst.getPane().getChildren().addAll(answer);
 	}
 
 	// callback func
 	public void removeFigureByPosition(int pos) {
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		list.remove(pos);
-		gc.setStroke(Color.GREY);
-		gc.strokeLine(200.0, 0.0, 200.0, 400.0);
-		gc.strokeLine(0.0, 200.0, 400.0, 200.0);
-		gc.setStroke(Color.BLACK);
-		for (int i = 0; i < list.size(); i++) {
-			try {
-				DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}	
-		}
-	}
-
-	private void addToListAndDraw(IShape shape) {
-		list.add(shape);
-		try {
-			DrawerFactory.create(shape).draw(shape, canvas.getGraphicsContext2D());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		clearCanvasAndDrawAll(canvas.getGraphicsContext2D(), null);
 	}
 
 	public void addCircle(double[] coords) throws Exception {
@@ -326,11 +206,7 @@ public class MainController {
 	@FXML
 	private void initialize() 
 	{
-		GraphicsContext gc = canvas.getGraphicsContext2D();
-		gc.setStroke(Color.GREY);
-		gc.strokeLine(200.0, 0.0, 200.0, 400.0);
-		gc.strokeLine(0.0, 200.0, 400.0, 200.0);
-		gc.setStroke(Color.BLACK);
+		clearCanvas(canvas.getGraphicsContext2D());
 	}
 
 	public MainController(Main mInst) { this.mInst = mInst; }
@@ -359,7 +235,7 @@ public class MainController {
 	private void saveAsImg() {
 		SnapshotParameters sp = new SnapshotParameters();
 		sp.setFill(Color.TRANSPARENT);
-		WritableImage wi = new WritableImage((int)(canvas.getHeight()), (int)(canvas.getWidth()));
+		WritableImage wi = new WritableImage((int)(canvas.getWidth()), (int)(canvas.getHeight()));
 		Image img = canvas.snapshot(null, wi);
 		File file = new File(pngFilePath);
 		BufferedImage bufImg = SwingFXUtils.fromFXImage(img, null);
@@ -423,5 +299,72 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void clearCanvas(GraphicsContext gc) {
+		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+		gc.setStroke(Color.GREY);
+		gc.strokeLine(200.0, 0.0, 200.0, 400.0);
+		gc.strokeLine(0.0, 200.0, 400.0, 200.0);
+		gc.setStroke(Color.BLACK);
+	}
+
+	private boolean findIn(IShape shape, IShape[] shapeList) {
+		if (shapeList == null || shape == null)
+			return false;
+
+		for (int i = 0; i < shapeList.length; i++) {
+			if (shape.toString().equals(shapeList[i].toString()))
+				return true;
+		}
+
+		return false;
+	}
+
+	private void clearCanvasAndDrawAll(GraphicsContext gc, IShape[] redList) {
+		clearCanvas(gc);
+
+		for (int i = 0; i < list.size(); i++) {
+			try {
+				if (findIn(list.get(i), redList)) {
+					gc.setStroke(Color.RED);
+					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
+					gc.setStroke(Color.BLACK);
+				} else {
+					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void writeToFile() {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+			writer.write(list.size());
+			writer.write("\n");
+			for (int i = 0; i < list.size(); i++) {
+				writer.write(list.get(i).toString());
+				writer.write("\n");
+			}
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void addToListAndDraw(IShape shape) {
+		list.add(shape);
+		try {
+			DrawerFactory.create(shape).draw(shape, canvas.getGraphicsContext2D());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void removeAll() {
+		list = new ArrayList<IShape>();
+		clearCanvas(canvas.getGraphicsContext2D());
 	}
 }

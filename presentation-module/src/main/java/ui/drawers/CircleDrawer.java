@@ -18,7 +18,12 @@ public final class CircleDrawer implements Drawer {
     @Override
     public void draw(IShape shape, GraphicsContext gc) throws Exception {
         Circle circle = (Circle) shape;
-		gc.strokeOval(circle.getP().getX(0) + centerX, circle.getP().getX(1) + centerY, circle.getR(), circle.getR());
+		gc.strokeOval(
+            circle.getP().getX(0) - circle.getR() + centerX,
+            circle.getP().getX(1) - circle.getR() + centerY,
+            circle.getR() * 2,
+            circle.getR() * 2
+        );
     }
 
     public static CircleDrawer createInstance() {

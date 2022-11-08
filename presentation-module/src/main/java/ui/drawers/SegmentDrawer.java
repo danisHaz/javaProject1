@@ -18,8 +18,8 @@ public final class SegmentDrawer implements Drawer {
     @Override
     public void draw(IShape shape, GraphicsContext gc) throws Exception {
         Segment segment = (Segment) shape;
-        gc.strokeLine(segment.getStart().getX(0) + centerX, segment.getStart().getX(1) + centerY,
-			segment.getFinish().getX(0) + centerX, segment.getFinish().getX(1) + centerY);
+        gc.strokeLine(segment.getStart().getX(0) + centerX, -segment.getStart().getX(1) + centerY,
+			segment.getFinish().getX(0) + centerX, -segment.getFinish().getX(1) + centerY);
     }
 
     public static SegmentDrawer createInstance() {

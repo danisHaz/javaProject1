@@ -23,7 +23,7 @@ public final class NGonDrawer implements Drawer {
 		double[] ycoords = new double[n];
 		for (int i = 0; i < n; i++) {
 			xcoords[i] = ngon.getP()[i].getX(0) + centerX;
-			ycoords[i] = ngon.getP()[i].getX(1) + centerY;
+			ycoords[i] = -ngon.getP()[i].getX(1) + centerY;
 		}
 
 		gc.strokePolygon(xcoords, ycoords, n);

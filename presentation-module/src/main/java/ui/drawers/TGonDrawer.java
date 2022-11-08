@@ -23,7 +23,7 @@ public final class TGonDrawer implements Drawer {
 		double[] ycoords = new double[n];
 		for (int i = 0; i < n; i++) {
 			xcoords[i] = tgon.getP()[i].getX(0) + centerX;
-			ycoords[i] = tgon.getP()[i].getX(1) + centerY;
+			ycoords[i] = -tgon.getP()[i].getX(1) + centerY;
 		}
 
 		gc.strokePolygon(xcoords, ycoords, n);

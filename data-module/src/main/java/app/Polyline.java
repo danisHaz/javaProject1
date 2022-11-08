@@ -79,7 +79,7 @@ public class Polyline extends OpenFigure {
 			p[j].symAxis(i);
 		}
 
-		return this;	
+		return this;
 	}
 
 	@Override
