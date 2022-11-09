@@ -12,7 +12,7 @@ public class FigureRemovalController {
 	public FigureRemovalController(FigureRemoval inst) { mInst = inst; }
 
     @FXML
-    private ComboBox comboBox;
+    private ComboBox<String> comboBox;
 
     @FXML
     private void removeCurrent() {

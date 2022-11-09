@@ -17,7 +17,7 @@ public class CountController {
     }
 
     @FXML
-    private ComboBox comboBox;
+    private ComboBox<String> comboBox;
 
     @FXML
     private void count() {

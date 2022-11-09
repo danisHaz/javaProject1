@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 public class DragFigureController {
 	private DragFigure mInst;
 	private List<TextField> list = new ArrayList<>();
-	private Spinner spinner;
+	private Spinner<Integer> spinner;
 	private double initX = 5.0;
 	private double initY = 100.0;
 	private double currentX = initX;
@@ -23,10 +23,10 @@ public class DragFigureController {
 	public DragFigureController(DragFigure controller) { mInst = controller; }
 
 	@FXML
-	private ComboBox comboBox;
+	private ComboBox<String> comboBox;
 
 	@FXML
-	private ComboBox drags;
+	private ComboBox<String> drags;
 
 	@FXML
 	private void dragCurrent() {
@@ -134,7 +134,8 @@ public class DragFigureController {
 
 	public void setDataToCombo() {
 		comboBox.getItems().clear();
-		List<IShape> curList = mInst.getMainController().list;
+		mInst.getMainController();
+		List<IShape> curList = MainController.list;
 		for (int i = 0; i < curList.size(); i++)
 			comboBox.getItems().add(curList.get(i).toString());
 

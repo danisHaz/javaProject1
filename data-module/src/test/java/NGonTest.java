@@ -6,7 +6,6 @@ import app.NGon;
 import app.Point2D;
 
 public class NGonTest {
-    private int n = 5;
     private Point2D[] points;
     private NGon ngon;
 

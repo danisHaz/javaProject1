@@ -13,13 +13,13 @@ public class CrossCheckingController {
     public CrossCheckingController(CrossChecking inst) { mInst = inst; }
 
     @FXML
-    private ComboBox comboBox;
+    private ComboBox<String> comboBox;
 
     @FXML
-    private ComboBox firstFigure;
+    private ComboBox<String> firstFigure;
 
     @FXML
-    private ComboBox secondFigure;
+    private ComboBox<String> secondFigure;
 
     @FXML
     private void check() {

@@ -20,7 +20,7 @@ public class FigureAdditionController {
 	public FigureAdditionController(FigureAddition inst) { mInst = inst; }
 
 	@FXML
-	private ComboBox comboBox;
+	private ComboBox<String> comboBox;
 
 	@FXML
 	private void addCurrent() {
