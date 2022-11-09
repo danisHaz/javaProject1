@@ -10,8 +10,6 @@ import javafx.scene.control.ComboBox;
 public class CrossCheckingController {
 	private CrossChecking mInst;
 
-    public CrossCheckingController(CrossChecking inst) { mInst = inst; }
-
     @FXML
     private ComboBox<String> comboBox;
 
@@ -20,6 +18,26 @@ public class CrossCheckingController {
 
     @FXML
     private ComboBox<String> secondFigure;
+
+    public CrossCheckingController(CrossChecking inst) { mInst = inst; }
+
+    public void setDataToCombo() {
+        comboBox.getItems().clear();
+        comboBox.getItems().addAll(
+            "Circle",
+			"Segment",
+			"TGon",
+			"NGon",
+			"QGon",
+			"Trapeze",
+			"Rectangle",
+			"Polyline"
+        );
+
+        comboBox.setOnAction((event) -> {
+            CrossCheckingController.this.addAttrs((String) comboBox.getValue());
+		});
+    }
 
     @FXML
     private void check() {
@@ -66,23 +84,5 @@ public class CrossCheckingController {
                 secondFigure.getItems().add(curList.get(i).toString());
             }
         }
-    }
-
-    public void setDataToCombo() {
-        comboBox.getItems().clear();
-        comboBox.getItems().addAll(
-            "Circle",
-			"Segment",
-			"TGon",
-			"NGon",
-			"QGon",
-			"Trapeze",
-			"Rectangle",
-			"Polyline"
-        );
-
-        comboBox.setOnAction((event) -> {
-            CrossCheckingController.this.addAttrs((String) comboBox.getValue());
-		});
     }
 }

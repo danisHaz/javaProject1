@@ -20,13 +20,35 @@ public class DragFigureController {
 	private final double deltaY = 30.0;
 	private boolean isLeft = true;
 
-	public DragFigureController(DragFigure controller) { mInst = controller; }
-
 	@FXML
 	private ComboBox<String> comboBox;
 
 	@FXML
 	private ComboBox<String> drags;
+
+	public DragFigureController(DragFigure controller) { mInst = controller; }
+	
+	public void setDataToCombo() {
+		comboBox.getItems().clear();
+		mInst.getMainController();
+		List<IShape> curList = MainController.list;
+		for (int i = 0; i < curList.size(); i++)
+			comboBox.getItems().add(curList.get(i).toString());
+
+		drags.getItems().clear();
+		currentX = initX;
+		currentY = initY;
+
+		drags.getItems().addAll(
+			"Rot",
+			"SymAxis",
+			"Shift"
+		);
+
+		drags.setOnAction((event) -> {
+			DragFigureController.this.addAttrs((String) drags.getValue());
+		});
+	}
 
 	@FXML
 	private void dragCurrent() {
@@ -130,27 +152,5 @@ public class DragFigureController {
 			setCoords(field);
 			addField(field);
 		}
-	}
-
-	public void setDataToCombo() {
-		comboBox.getItems().clear();
-		mInst.getMainController();
-		List<IShape> curList = MainController.list;
-		for (int i = 0; i < curList.size(); i++)
-			comboBox.getItems().add(curList.get(i).toString());
-
-		drags.getItems().clear();
-		currentX = initX;
-		currentY = initY;
-
-		drags.getItems().addAll(
-			"Rot",
-			"SymAxis",
-			"Shift"
-		);
-
-		drags.setOnAction((event) -> {
-			DragFigureController.this.addAttrs((String) drags.getValue());
-		});
 	}
 }

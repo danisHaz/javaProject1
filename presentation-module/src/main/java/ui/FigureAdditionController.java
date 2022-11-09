@@ -17,10 +17,49 @@ public class FigureAdditionController {
 	private final double deltaY = 30.0;
 	private boolean isLeft = true;
 
-	public FigureAdditionController(FigureAddition inst) { mInst = inst; }
-
 	@FXML
 	private ComboBox<String> comboBox;
+
+	public FigureAdditionController(FigureAddition inst) { mInst = inst; }
+
+	public void addAttrs(String type) {
+		if (type.equals("Circle")) {
+			addCircle();
+		} else if (type.equals("Segment")) {
+			addSegment();
+		} else if (type.equals("TGon")) {
+			addTGon();
+		} else if (type.equals("NGon")) {
+			addNGon();
+		} else if (type.equals("QGon")) {
+			addQGon();
+		} else if (type.equals("Trapeze")) {
+			addTrapeze();
+		} else if (type.equals("Rectangle")) {
+			addRectangle();
+		} else if (type.equals("Polyline")) {
+			addPolyline();
+		}
+	}
+
+	public void setDataToCombo() {
+		comboBox.getItems().clear();
+		comboBox.getItems().addAll(
+			"Circle",
+			"Segment",
+			"TGon",
+			"NGon",
+			"QGon",
+			"Trapeze",
+			"Rectangle",
+			"Polyline"
+		);
+
+		comboBox.setOnAction((event) -> {
+			if (comboBox.getValue() instanceof String)
+				FigureAdditionController.this.addAttrs((String) comboBox.getValue());
+		});
+	}
 
 	@FXML
 	private void addCurrent() {
@@ -164,44 +203,5 @@ public class FigureAdditionController {
 		clearCoords();
 		addSpinner();
 		addNFields(spinner.getValue());
-	}
-
-	public void addAttrs(String type) {
-		if (type.equals("Circle")) {
-			addCircle();
-		} else if (type.equals("Segment")) {
-			addSegment();
-		} else if (type.equals("TGon")) {
-			addTGon();
-		} else if (type.equals("NGon")) {
-			addNGon();
-		} else if (type.equals("QGon")) {
-			addQGon();
-		} else if (type.equals("Trapeze")) {
-			addTrapeze();
-		} else if (type.equals("Rectangle")) {
-			addRectangle();
-		} else if (type.equals("Polyline")) {
-			addPolyline();
-		}
-	}
-
-	public void setDataToCombo() {
-		comboBox.getItems().clear();
-		comboBox.getItems().addAll(
-			"Circle",
-			"Segment",
-			"TGon",
-			"NGon",
-			"QGon",
-			"Trapeze",
-			"Rectangle",
-			"Polyline"
-		);
-
-		comboBox.setOnAction((event) -> {
-			if (comboBox.getValue() instanceof String)
-				FigureAdditionController.this.addAttrs((String) comboBox.getValue());
-		});
 	}
 }

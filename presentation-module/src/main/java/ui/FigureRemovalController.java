@@ -9,10 +9,19 @@ import javafx.scene.control.ComboBox;
 public class FigureRemovalController {
     private FigureRemoval mInst;
 
-	public FigureRemovalController(FigureRemoval inst) { mInst = inst; }
-
     @FXML
     private ComboBox<String> comboBox;
+
+	public FigureRemovalController(FigureRemoval inst) { mInst = inst; }
+
+    public void setDataToCombo() {
+        comboBox.getItems().clear();
+        mInst.getMainController();
+        List<IShape> curList = MainController.list;
+		for (int i = 0; i < curList.size(); i++) {
+            comboBox.getItems().add(curList.get(i).toString());
+        }
+    }
 
     @FXML
     private void removeCurrent() {
@@ -31,14 +40,5 @@ public class FigureRemovalController {
     @FXML
     private void cancel() {
         mInst.onDestroy();
-    }
-
-    public void setDataToCombo() {
-        comboBox.getItems().clear();
-        mInst.getMainController();
-        List<IShape> curList = MainController.list;
-		for (int i = 0; i < curList.size(); i++) {
-            comboBox.getItems().add(curList.get(i).toString());
-        }
     }
 }

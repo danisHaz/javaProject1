@@ -11,13 +11,22 @@ public class CountController {
     private Count mInst;
     private boolean type;
 
+    @FXML
+    private ComboBox<String> comboBox;
+
     public CountController(Count mInst, boolean type) {
         this.mInst = mInst;
         this.type = type;
     }
 
-    @FXML
-    private ComboBox<String> comboBox;
+    public void setDataToCombo() {
+        mInst.getMainController();
+        List<IShape> list = MainController.list;
+        for (int i = 0; i < list.size(); i++) {
+            comboBox.getItems().add(list.get(i).toString());
+        }
+
+    }
 
     @FXML
     private void count() {
@@ -35,14 +44,5 @@ public class CountController {
     @FXML
     private void cancel() {
         mInst.onDestroy();
-    }
-
-    public void setDataToCombo() {
-        mInst.getMainController();
-        List<IShape> list = MainController.list;
-        for (int i = 0; i < list.size(); i++) {
-            comboBox.getItems().add(list.get(i).toString());
-        }
-
     }
 }
