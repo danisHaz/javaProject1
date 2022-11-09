@@ -33,7 +33,7 @@ public class MainController {
 	private Main mInst;
 
 	private final int answerLayoutX = 450;
-	private final int answerLayoutY = 270;
+	private final int answerLayoutY = 305;
 	private TextField answer = null;
 
 	@FXML
