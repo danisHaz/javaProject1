@@ -22,14 +22,14 @@
 	  <Button layoutX="450.0" layoutY="5.0" mnemonicParsing="false" onAction="#addFigure" text="Add Figures" />
 	  <!-- <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="386.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" /> -->
 	  <!-- <Button layoutX="450.0" layoutY="212.0" mnemonicParsing="false" onAction="#saveImage" text="Перенос изображния" /> -->
-	  <Button layoutX="450.0" layoutY="30.0" mnemonicParsing="false" onAction="#saveToFile" text="Save To File" />
-	  <Button layoutX="450.0" layoutY="55.0" mnemonicParsing="false" onAction="#uploadFromFile" text="Upload From File" />
-	  <Button layoutX="450.0" layoutY="80.0" mnemonicParsing="false" onAction="#saveAsImg" text="Save As Image" />
-	  <Button layoutX="450.0" layoutY="105.0" mnemonicParsing="false" onAction="#dragFigure" text="Drag Figure" />
-	  <Button layoutX="450.0" layoutY="130.0" mnemonicParsing="false" onAction="#removeFigure" text="Remove Figure" />
-	  <Button layoutX="450.0" layoutY="155.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
-	  <Button layoutX="450.0" layoutY="180.0" mnemonicParsing="false" onAction="#computeS" text="Compute Square" />
-	  <Button layoutX="450.0" layoutY="205.0" mnemonicParsing="false" onAction="#computeP" text="Compute Perimeter" />
-	  <Button layoutX="450.0" layoutY="230.0" mnemonicParsing="false" onAction="#checkIfCross" text="Check if cross" />
+	  <Button layoutX="450.0" layoutY="35.0" mnemonicParsing="false" onAction="#saveToFile" text="Save To File" />
+	  <Button layoutX="450.0" layoutY="65.0" mnemonicParsing="false" onAction="#uploadFromFile" text="Upload From File" />
+	  <Button layoutX="450.0" layoutY="95.0" mnemonicParsing="false" onAction="#saveAsImg" text="Save As Image" />
+	  <Button layoutX="450.0" layoutY="125.0" mnemonicParsing="false" onAction="#dragFigure" text="Drag Figure" />
+	  <Button layoutX="450.0" layoutY="155.0" mnemonicParsing="false" onAction="#removeFigure" text="Remove Figure" />
+	  <Button layoutX="450.0" layoutY="185.0" mnemonicParsing="false" onAction="#clear" text="Clear" />
+	  <Button layoutX="450.0" layoutY="215.0" mnemonicParsing="false" onAction="#computeS" text="Compute Square" />
+	  <Button layoutX="450.0" layoutY="245.0" mnemonicParsing="false" onAction="#computeP" text="Compute Perimeter" />
+	  <Button layoutX="450.0" layoutY="275.0" mnemonicParsing="false" onAction="#checkIfCross" text="Check if cross" />
    </children>
 </AnchorPane>

@@ -12,8 +12,10 @@ public class DragFigureController {
 	private DragFigure mInst;
 	private List<TextField> list = new ArrayList<>();
 	private Spinner spinner;
-	private double currentX = 5.0;
-	private double currentY = 100.0;
+	private double initX = 5.0;
+	private double initY = 100.0;
+	private double currentX = initX;
+	private double currentY = initY;
 	private final double deltaX = 160.0;
 	private final double deltaY = 30.0;
 	private boolean isLeft = true;
@@ -76,8 +78,8 @@ public class DragFigureController {
 
 		spinner.setValueFactory(valueFactory);
 
-		spinner.setLayoutX(5.0);
-		spinner.setLayoutY(100.0);
+		spinner.setLayoutX(initX);
+		spinner.setLayoutY(initY);
 
 		mInst.getPane().getChildren().addAll(spinner);
 	}
@@ -90,6 +92,9 @@ public class DragFigureController {
 		list = new ArrayList<>();
 		removeSpinner();
 		isLeft = true;
+		
+		currentX = initX;
+		currentY = initY;
 
 		if (value == "Rot") {
 			addNFields(1);
@@ -134,6 +139,9 @@ public class DragFigureController {
 			comboBox.getItems().add(curList.get(i).toString());
 
 		drags.getItems().clear();
+		currentX = initX;
+		currentY = initY;
+
 		drags.getItems().addAll(
 			"Rot",
 			"SymAxis",
