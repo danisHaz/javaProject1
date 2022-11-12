@@ -28,7 +28,7 @@ public class TrapezeTest {
     public void checkLength() {
         String testName = "trapeze length";
         try {
-            assertTrue(testName, String.format("%.4f", trapeze.length()).equals("32.2939"));
+            assertTrue(testName, Math.abs(trapeze.length() - 32.2939) < 0.001);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);

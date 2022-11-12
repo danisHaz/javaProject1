@@ -26,7 +26,7 @@ public class SegmentTest {
     public void checkLength() {
         String testName = "segment length";
         try {
-            assertTrue(testName, String.format("%.4f", segment.length()).equals("11.1803"));
+            assertTrue(testName, Math.abs(segment.length() - 11.1803) < 0.001);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);
@@ -37,7 +37,7 @@ public class SegmentTest {
     public void checkSquare() {
         String testName = "segment square";
         try {
-            assertTrue(testName, String.format("%.2f", segment.square()).equals("0.00"));
+            assertTrue(testName, Math.abs(segment.square()) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);

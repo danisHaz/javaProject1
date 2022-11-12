@@ -28,7 +28,7 @@ public class NGonTest {
     public void checkLength() {
         String testName = "ngon length";
         try {
-            assertTrue(testName, String.format("%.2f", ngon.length()).equals("10.54"));
+            assertTrue(testName, Math.abs(ngon.length() - 10.54) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);
@@ -39,7 +39,7 @@ public class NGonTest {
     public void checkSquare() {
         String testName = "ngon square";
         try {
-            assertTrue(testName, String.format("%.2f", ngon.square()).equals("5.00"));
+            assertTrue(testName, Math.abs(ngon.square() - 5) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);

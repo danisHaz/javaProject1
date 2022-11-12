@@ -28,7 +28,7 @@ public class RectangleTest {
     public void checkLength() {
         String testName = "rectangle length";
         try {
-            assertTrue(testName, String.format("%.2f", rectangle.length()).equals("40.00"));
+            assertTrue(testName, Math.abs(rectangle.length() - 40.00) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);
@@ -39,7 +39,7 @@ public class RectangleTest {
     public void checkSquare() {
         String testName = "rectangle square";
         try {
-            assertTrue(testName, String.format("%.2f", rectangle.square()).equals("100.00"));
+            assertTrue(testName, Math.abs(rectangle.square() - 100.00) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);

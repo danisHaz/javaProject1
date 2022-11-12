@@ -19,14 +19,14 @@ public class PointTest {
     @Test
     public void checkLength() {
         String testName = "point length";
-        assertTrue(testName, String.format("%.4f", point.abs()).equals("7.4162"));
+        assertTrue(testName, Math.abs(point.abs() - 7.4162) < 0.001);
     }
 
     @Test
     public void checkAdd() {
         String testName = "point add";
         try {
-            assertTrue(testName, String.format("%.4f", Point.add(point, point).abs()).equals("14.8324"));
+            assertTrue(testName, Math.abs(Point.add(point, point).abs() - 14.8324) < 0.001);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);
@@ -37,7 +37,7 @@ public class PointTest {
     public void checkSub() {
         String testName = "point sub";
         try {
-            assertTrue(testName, String.format("%.2f", Point.sub(point, point).abs()).equals("0.00"));
+            assertTrue(testName, Math.abs(Point.sub(point, point).abs()) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);
@@ -48,7 +48,7 @@ public class PointTest {
     public void checkMulti() {
         String testName = "point multi";
         try {
-            assertTrue(testName, String.format("%.4f", Point.mult(point, 3).abs()).equals("22.2486"));
+            assertTrue(testName, Math.abs(Point.mult(point, 3).abs() - 22.2486) < 0.001);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);

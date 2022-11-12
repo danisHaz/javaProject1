@@ -27,7 +27,7 @@ public class PolylineTest {
     public void checkLength() {
         String testName = "Polyline length";
         try {
-            assertTrue(testName, String.format("%.4f", polyline.length()).equals("1.4142"));
+            assertTrue(testName, Math.abs(polyline.length() - 1.4142) < 0.001);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);

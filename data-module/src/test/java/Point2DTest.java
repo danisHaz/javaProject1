@@ -18,11 +18,11 @@ public class Point2DTest {
     @Test
     public void checkRot() {
         String testName = "point2D length";
-        assertTrue(testName, String.format("%.4f", point.abs()).equals("3.1623"));
+        assertTrue(testName, Math.abs(point.abs() - 3.1623) < 0.001);
 
         try {
             point = Point2D.rot(point, Math.PI);
-            assertTrue(testName, String.format("%.4f", Point2D.add(point, point).abs()).equals("6.3246"));
+            assertTrue(testName, Math.abs(Point2D.add(point, point).abs() - 6.3246) < 0.001);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);

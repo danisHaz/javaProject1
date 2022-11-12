@@ -29,7 +29,7 @@ public class QGonTest {
         String testName = "qgon length";
 
         try {
-            assertTrue(testName, String.format("%.2f", qgon.length()).equals("12.51"));
+            assertTrue(testName, Math.abs(qgon.length() - 12.51) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);
@@ -41,7 +41,7 @@ public class QGonTest {
         String testName = "qgon square";
 
         try {
-            assertTrue(testName, String.format("%.2f", qgon.square()).equals("7.00"));
+            assertTrue(testName, Math.abs(qgon.square() - 7.00) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);

@@ -27,7 +27,7 @@ public class TGonTest {
     public void checkLength() {
         String testName = "tgon length";
         try {
-            assertTrue(testName, String.format("%.4f", tgon.length()).equals("32.3607"));
+            assertTrue(testName, Math.abs(tgon.length() - 32.3607) < 0.001);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);
@@ -38,7 +38,7 @@ public class TGonTest {
     public void checkSquare() {
         String testName = "tgon square";
         try {
-            assertTrue(testName, String.format("%.2f", tgon.square()).equals("50.00"));
+            assertTrue(testName, Math.abs(tgon.square() - 50.00) < 0.01);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(testName, false);
