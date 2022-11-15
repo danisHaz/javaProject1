@@ -76,6 +76,6 @@ public class Circle implements IShape {
 	
 	@Override
 	public String toString() {
-		return String.format("Circle center=%s, radius=%.2f", p.toString(), r);
+		return String.format("Circle(p=%s, r=%.2f)", p.toString(), r);
 	}
 }

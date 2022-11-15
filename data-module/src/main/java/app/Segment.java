@@ -174,7 +174,6 @@ public class Segment extends OpenFigure {
 
 	@Override
 	public String toString() {
-		String str = String.format("Segment = (%s, %s)", start.toString(), finish.toString());
-		return str;
+		return String.format("Segment(p=%s, p=%s)", start.toString(), finish.toString());
 	}
 }

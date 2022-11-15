@@ -21,4 +21,9 @@ public class Rectangle extends QGon {
 	public double square() throws Exception {
 		return Point2D.sub(p[0], p[1]).abs() * Point2D.sub(p[1], p[2]).abs();
 	}
+
+	@Override
+	public String toString() {
+		return type + super.toString().substring(4);
+	}
 }

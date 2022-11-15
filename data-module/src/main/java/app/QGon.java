@@ -12,4 +12,9 @@ public class QGon extends NGon {
     public double square() throws Exception {
         return super.square();
     }
+
+    @Override
+    public String toString() {
+        return type + super.toString().substring(4);
+    }
 }

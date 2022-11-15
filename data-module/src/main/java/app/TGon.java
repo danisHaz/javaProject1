@@ -18,4 +18,9 @@ public class TGon extends NGon {
 		s += Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
 		return s;
 	}
+
+	@Override
+	public String toString() {
+		return type + super.toString().substring(4);
+	}
 }
