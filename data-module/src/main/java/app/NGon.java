@@ -123,10 +123,11 @@ public class NGon implements IShape {
 
 	@Override
 	public String toString() {
-		StringBuilder str = new StringBuilder(String.format("NGon(n=%d, p:", n));
+		StringBuilder str = new StringBuilder(String.format("NGon(n=%d, p=(", n));
 		for (int i = 0; i < n; i++) {
 			str.append(p[i].toString() + ", ");
 		}
+		str.append("))");
 		return str.toString();
 	}
 }

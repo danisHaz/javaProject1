@@ -95,11 +95,11 @@ public class Polyline extends OpenFigure {
 
 	@Override
 	public String toString() {
-		StringBuilder str = new StringBuilder(String.format("Polyline(dim=%d, p=", n));
+		StringBuilder str = new StringBuilder(String.format("Polyline(dim=%d, p=(", n));
 		for (Point2D point: p) {
 			str.append(point.toString() + ", ");
 		}
-		str.append(")");
+		str.append("))");
 		return str.toString();
 	}
 }
