@@ -259,6 +259,11 @@ public class MainController {
 			showAlert();
 			e.printStackTrace();
 		}
+		try {
+			br.close();
+		} catch (IOException e) {
+
+		}
 	}
 
 	@FXML
