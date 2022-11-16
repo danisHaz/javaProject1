@@ -198,9 +198,11 @@ public class Point {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder(String.format("Point(dims=%d, x=(", dim));
-
-		for (double i: x) {
-			str.append(String.valueOf(i) + ", ");
+		String comma = ", ";
+		for (int i = 0; i < x.length; i++) {
+			if (i == x.length - 1)
+				comma = "";
+			str.append(String.valueOf(i) + comma);
 		}
 
 		str.append("))");

@@ -1,6 +1,2 @@
 
-NGon(3):
-Point(2), (-0.0, 0.0, ),
-Point(2), (-50.0, 50.0, ),
-Point(2), (-100.0, 0.0, ),
-
+NGon(n=3, p=(Point(dims=2, x=(0, 1)), Point(dims=2, x=(0, 1)), Point(dims=2, x=(0, 1))))

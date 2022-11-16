@@ -14,7 +14,7 @@ public class IfigureFactory {
             ConstructorHolder holder = ConstructorHolder.parseFromString(buildString);
             shape = createByName(holder.name, holder.args);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return shape;
@@ -107,8 +107,10 @@ public class IfigureFactory {
 
         private static HashMap<String, String> parseArgs(String strArgs) {
             HashMap<String, String> args = new HashMap<>();
+            System.out.println(strArgs);
 
             int lastInd = 0;
+            int bracketsBalance = 0;
             int state = 0; // 0 - бежим по имени аргумента, 1 - бежим по значению аргумента, 2 - бежим по внутренней кухне аргумента,
             String curArgName = null;
             for (int i = 0; i < strArgs.length(); i++) {
@@ -122,6 +124,7 @@ public class IfigureFactory {
                     lastInd = i + 1;
                 } else if (state == 1) {
                     if (curChar == '(') {
+                        bracketsBalance++;
                         state = 2;
                         continue;
                     }
@@ -129,11 +132,15 @@ public class IfigureFactory {
                     if (curChar == ',') {
                         args.put(curArgName, strArgs.substring(lastInd, i));
                         curArgName = null;
+                        state = 0;
                         i++;
                         continue;
                     }
                 } else if (state == 2) {
-                    if (curChar == ')') {
+                    if (curChar == '(')
+                        bracketsBalance++;
+
+                    if (curChar == ')' && --bracketsBalance == 0) {
                         state = 1;
                         continue;
                     }

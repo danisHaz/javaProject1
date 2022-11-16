@@ -1,30 +1,41 @@
 package ui;
 
-import ui.drawers.DrawerFactory;
-
-import app.*;
-
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import app.Circle;
+import app.IShape;
+import app.NGon;
+import app.Point2D;
+import app.Polyline;
+import app.QGon;
+import app.Rectangle;
+import app.Segment;
+import app.TGon;
+import app.Trapeze;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import ui.drawers.DrawerFactory;
 
 public class MainController {
 	
@@ -228,7 +239,26 @@ public class MainController {
 	
 	@FXML
 	private void uploadFromFile() {
-		// out of order
+		File file = new File("./src/main/java/ui/figures.txt");
+		FileInputStream fstream = null;
+		try {
+			fstream = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+		try {
+			String line;
+			while ((line = br.readLine()) != null) {
+				IShape restoredShape = IfigureFactory.create(line);
+				addToListAndDraw(restoredShape);
+			}
+		} catch (Exception e) {
+			showAlert();
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

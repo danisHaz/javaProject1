@@ -124,8 +124,11 @@ public class NGon implements IShape {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder(String.format("NGon(n=%d, p=(", n));
+		String comma = ", ";
 		for (int i = 0; i < n; i++) {
-			str.append(p[i].toString() + ", ");
+			if (i == n - 1)
+				comma = "";
+			str.append(p[i].toString() + comma);
 		}
 		str.append("))");
 		return str.toString();
