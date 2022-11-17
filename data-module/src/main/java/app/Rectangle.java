@@ -24,6 +24,6 @@ public class Rectangle extends QGon {
 
 	@Override
 	public String toString() {
-		return type + super.toString().substring(4);
+		return super.toString();
 	}
 }

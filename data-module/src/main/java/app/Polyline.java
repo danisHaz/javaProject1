@@ -95,7 +95,7 @@ public class Polyline extends OpenFigure {
 
 	@Override
 	public String toString() {
-		StringBuilder str = new StringBuilder(String.format("Polyline(dim=%d, p=(", n));
+		StringBuilder str = new StringBuilder(String.format("Polyline(n=%d, p=(", n));
 		String comma = ", ";
 		for (int i = 0; i < n; i++) {
 			if (i == n - 1)

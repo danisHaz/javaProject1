@@ -3,9 +3,16 @@ package ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import app.Circle;
 import app.IShape;
 import app.NGon;
 import app.Point2D;
+import app.Polyline;
+import app.QGon;
+import app.Rectangle;
+import app.Segment;
+import app.TGon;
+import app.Trapeze;
 
 public class IfigureFactory {
     
@@ -42,8 +49,12 @@ public class IfigureFactory {
         return point;
     }
 
-    private static NGon createNGon(HashMap<String, String[]> args) throws Exception {
-        NGon ngon = null;
+    private interface Creator<T> {
+        T create(Point2D[] points) throws Exception;
+    }
+
+    private static <T> T createNShape(HashMap<String, String[]> args, Creator<T> creator) throws Exception {
+        T ngon = null;
 
         if (args.containsKey("n") && args.containsKey("p")) {
             Integer n = Integer.parseInt(args.get("n")[0]);
@@ -60,10 +71,49 @@ public class IfigureFactory {
                 points[i] = createPoint(holder.getArgs());
             }
 
-            ngon = new NGon(points);
+            ngon = creator.create(points);
         }
 
         return ngon;
+    }
+
+    private static Circle createCircle(HashMap<String, String[]> args) throws Exception {
+        Circle circle = null;
+
+        if (args.containsKey("p") && args.containsKey("r")) {
+            Double r = Double.parseDouble(args.get("r")[0]);
+
+            String center = args.get("p")[0];
+
+            Point2D point = null;
+            ConstructorHolder holder = ConstructorHolder.parseFromString(center);
+            point = createPoint(holder.getArgs());
+
+            circle = new Circle(point, r);
+        }
+
+        return circle;
+    }
+
+    private static Segment createSegment(HashMap<String, String[]> args) throws Exception {
+        Segment segment = null;
+
+        if (args.containsKey("start") && args.containsKey("finish")) {
+            String start = args.get("start")[0];
+            String finish = args.get("finish")[0];
+
+            Point2D startP = null;
+            Point2D finishP = null;
+            ConstructorHolder startHolder = ConstructorHolder.parseFromString(start);
+            ConstructorHolder finishHolder = ConstructorHolder.parseFromString(finish);
+
+            startP = createPoint(startHolder.getArgs());
+            finishP = createPoint(finishHolder.getArgs());
+
+            segment = new Segment(startP, finishP);
+        }
+
+        return segment;
     }
 
     private final static class ConstructorHolder {
@@ -85,6 +135,8 @@ public class IfigureFactory {
         
         public static ConstructorHolder parseFromString(String buildString) throws Exception {
             String[] buildRes = new String[2];
+
+            System.out.println(buildString + " fdsfdssfdfdsfs");
 
             parsing:
             for (int i = 0; i < buildString.length(); i++) {
@@ -152,18 +204,19 @@ public class IfigureFactory {
                 }
             }
 
-            if (args.containsKey("n")) {
-                System.out.println(args.get("n")[0]);
+            if (args.containsKey("start")) {
+                System.out.println(args.get("start")[0]);
             }
 
-            if (args.containsKey("p")) {
-                System.out.println(args.get("p")[0]);
+            if (args.containsKey("finish")) {
+                System.out.println(args.get("finish")[0]);
             }
 
             return args;
         }
 
         private static String[] parseArrayArgs(String arrString) {
+            System.out.println(arrString + " eqweqw");
             if (arrString == null || arrString.length() == 0 || arrString.charAt(0) != '(') {
                 return new String[] { arrString };
             }
@@ -201,19 +254,21 @@ public class IfigureFactory {
     private static IShape createByName(String name, HashMap<String, String[]> args) throws Exception {
         switch(name){
             case "NGon":
-                return createNGon(args);
+                return createNShape(args, (p) -> new NGon(p));
             case "Polyline":
-                return createNGon(args);
+                return createNShape(args, (p) -> new Polyline(p));
             case "QGon":
-                return createNGon(args);
+                return createNShape(args, (p) -> new QGon(p));
             case "Rectangle":
-                return createNGon(args);
+                return createNShape(args, (p) -> new Rectangle(p));
             case "Segment":
-                return createNGon(args);
+                return createSegment(args);
             case "TGon":
-                return createNGon(args);
+                return createNShape(args, (p) -> new TGon(p));
             case "Trapeze":
-                return createNGon(args);
+                return createNShape(args, (p) -> new Trapeze(p));
+            case "Circle":
+                return createCircle(args);
             default:
                 return null;
         }

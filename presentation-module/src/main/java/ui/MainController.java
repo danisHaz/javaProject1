@@ -377,11 +377,11 @@ public class MainController {
 	private void writeToFile() {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-			writer.write(list.size());
-			writer.write("\n");
+			String endOf = "\n";
 			for (int i = 0; i < list.size(); i++) {
-				writer.write(list.get(i).toString());
-				writer.write("\n");
+				if (i == list.size() - 1)
+					endOf = "";
+				writer.write(list.get(i).toString() + endOf);
 			}
 			writer.close();
 		} catch (IOException e) {
