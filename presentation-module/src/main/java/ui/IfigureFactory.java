@@ -1,5 +1,6 @@
 package ui;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import app.IShape;
@@ -20,13 +21,12 @@ public class IfigureFactory {
         return shape;
     }
 
-    private static Point2D createPoint(HashMap<String, String> args) throws Exception {
+    private static Point2D createPoint(HashMap<String, String[]> args) throws Exception {
         Point2D point = null;
         
         if (args.containsKey("dims") && args.containsKey("x")) {
-            Integer dims = Integer.parseInt(args.get("dims"));
-            String xCoords = args.get("x");
-            String[] coords = xCoords.substring(1, xCoords.length() - 1).split(", ");
+            Integer dims = Integer.parseInt(args.get("dims")[0]);
+            String[] coords = args.get("x");
             if (coords.length != dims || dims != 2) {
                 throw new Exception("Dims not valid");
             }
@@ -42,20 +42,20 @@ public class IfigureFactory {
         return point;
     }
 
-    private static NGon createNGon(HashMap<String, String> args) throws Exception {
+    private static NGon createNGon(HashMap<String, String[]> args) throws Exception {
         NGon ngon = null;
 
         if (args.containsKey("n") && args.containsKey("p")) {
-            Integer n = Integer.parseInt(args.get("n"));
+            Integer n = Integer.parseInt(args.get("n")[0]);
 
-            String pCoords = args.get("p");
-            String[] coords = pCoords.substring(1, pCoords.length() - 1).split(", ");
+            String[] coords = args.get("p");
             if (coords.length != n) {
                 throw new Exception("NGon: n not valid");
             }
 
             Point2D[] points = new Point2D[n];
             for (int i = 0; i < coords.length; i++) {
+                System.out.println(coords[i]);
                 ConstructorHolder holder = ConstructorHolder.parseFromString(coords[i]);
                 points[i] = createPoint(holder.getArgs());
             }
@@ -68,9 +68,9 @@ public class IfigureFactory {
 
     private final static class ConstructorHolder {
         private String name = null;
-        private HashMap<String, String> args = new HashMap<>();
+        private HashMap<String, String[]> args = new HashMap<>();
 
-        private ConstructorHolder(String name, HashMap<String, String> args) {
+        private ConstructorHolder(String name, HashMap<String, String[]> args) {
             this.name = name;
             this.args = args;
         }
@@ -79,7 +79,7 @@ public class IfigureFactory {
             return name;
         }
 
-        public HashMap<String, String> getArgs() {
+        public HashMap<String, String[]> getArgs() {
             return args;
         }
         
@@ -102,18 +102,22 @@ public class IfigureFactory {
             }
             String name = buildRes[0];
             String args = buildRes[1];
+            System.out.println(name + " wrewr " + args);
             return new ConstructorHolder(name, parseArgs(args));
         }
 
-        private static HashMap<String, String> parseArgs(String strArgs) {
-            HashMap<String, String> args = new HashMap<>();
-            System.out.println(strArgs);
+        private static HashMap<String, String[]> parseArgs(String strArgs) {
+            HashMap<String, String[]> args = new HashMap<>();
 
             int lastInd = 0;
             int bracketsBalance = 0;
             int state = 0; // 0 - бежим по имени аргумента, 1 - бежим по значению аргумента, 2 - бежим по внутренней кухне аргумента,
             String curArgName = null;
-            for (int i = 0; i < strArgs.length(); i++) {
+            for (int i = 0; i <= strArgs.length(); i++) {
+                if (i >= strArgs.length()) {
+                    args.put(curArgName, parseArrayArgs(strArgs.substring(lastInd, i)));
+                    break;
+                }
                 char curChar = strArgs.charAt(i);
                 if (state == 0) {
                     if (curChar != '=') {
@@ -130,9 +134,10 @@ public class IfigureFactory {
                     }
 
                     if (curChar == ',') {
-                        args.put(curArgName, strArgs.substring(lastInd, i));
+                        args.put(curArgName, parseArrayArgs(strArgs.substring(lastInd, i)));
                         curArgName = null;
                         state = 0;
+                        lastInd = i + 2;
                         i++;
                         continue;
                     }
@@ -147,11 +152,53 @@ public class IfigureFactory {
                 }
             }
 
+            if (args.containsKey("n")) {
+                System.out.println(args.get("n")[0]);
+            }
+
+            if (args.containsKey("p")) {
+                System.out.println(args.get("p")[0]);
+            }
+
             return args;
+        }
+
+        private static String[] parseArrayArgs(String arrString) {
+            if (arrString == null || arrString.length() == 0 || arrString.charAt(0) != '(') {
+                return new String[] { arrString };
+            }
+
+            ArrayList<String> list = new ArrayList<>();
+
+            int lastInd = 1;
+            int bracketBalance = 0;
+            for (int i = 1; i < arrString.length(); i++) {
+                if (i == arrString.length() - 1) {
+                    list.add(arrString.substring(lastInd, i));
+                    break;
+                }
+                char cur = arrString.charAt(i);
+                switch (cur) {
+                    case '(':
+                        bracketBalance++;
+                        break;
+                    case ')':
+                        bracketBalance--;
+                        break;
+                    case ',':
+                        if (bracketBalance != 0)
+                            continue;
+                        list.add(arrString.substring(lastInd, i));
+                        lastInd = i + 2;
+                        i++;
+                }
+            }
+
+            return list.toArray(new String[0]);
         }
     }
 
-    private static IShape createByName(String name, HashMap<String, String> args) throws Exception {
+    private static IShape createByName(String name, HashMap<String, String[]> args) throws Exception {
         switch(name){
             case "NGon":
                 return createNGon(args);

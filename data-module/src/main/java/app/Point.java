@@ -202,7 +202,7 @@ public class Point {
 		for (int i = 0; i < x.length; i++) {
 			if (i == x.length - 1)
 				comma = "";
-			str.append(String.valueOf(i) + comma);
+			str.append(String.valueOf(x[i]) + comma);
 		}
 
 		str.append("))");
