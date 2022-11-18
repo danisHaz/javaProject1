@@ -3,7 +3,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import ui.IfigureFactory;
+import ui.deserializers.IfigureFactory;
 
 public class IFigureFactoryTest {
     private String str = "NGon(n=3, p=(Point(dims=2, x=(0, 1)), Point(dims=2, x=(0, 1)), Point(dims=2, x=(0, 1))))";

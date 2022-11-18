@@ -35,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import ui.deserializers.IfigureFactory;
 import ui.drawers.DrawerFactory;
 
 public class MainController {
@@ -251,9 +252,15 @@ public class MainController {
 		BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 		try {
 			String line;
+			int lineInd = 0;
 			while ((line = br.readLine()) != null) {
 				IShape restoredShape = IfigureFactory.create(line);
-				addToListAndDraw(restoredShape);
+				if (restoredShape != null) {
+					addToListAndDraw(restoredShape);
+				} else {
+					System.out.println(String.format("Shape on line %d is invalid, ignoring it", lineInd));
+				}
+				lineInd++;
 			}
 		} catch (Exception e) {
 			showAlert();
@@ -262,7 +269,8 @@ public class MainController {
 		try {
 			br.close();
 		} catch (IOException e) {
-
+			showAlert();
+			e.printStackTrace();
 		}
 	}
 
@@ -278,6 +286,7 @@ public class MainController {
 			ImageIO.write(bufImg, "png", file);
 		} catch (IOException e) {
 			e.printStackTrace();
+			showAlert();
 		}
 	}
 
@@ -288,6 +297,7 @@ public class MainController {
 			dragger.start(this);
 		} catch (Exception e) {
 			e.printStackTrace();
+			showAlert();
 		}
 	}
 
@@ -298,6 +308,7 @@ public class MainController {
 			removal.start(this);
 		} catch (Exception e) {
 			e.printStackTrace();
+			showAlert();
 		}
 	}
 	
@@ -313,6 +324,7 @@ public class MainController {
 			cnt.start(this, true);
 		} catch (Exception e) {
 			e.printStackTrace();
+			showAlert();
 		}
 	}
 
@@ -323,6 +335,7 @@ public class MainController {
 			cnt.start(this, false);
 		} catch (Exception e) {
 			e.printStackTrace();
+			showAlert();
 		}
 	}
 
@@ -333,6 +346,7 @@ public class MainController {
 			checking.start(this);
 		} catch (Exception e) {
 			e.printStackTrace();
+			showAlert();
 		}
 	}
 
@@ -386,6 +400,7 @@ public class MainController {
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			showAlert();
 		}
 	}
 
@@ -395,6 +410,7 @@ public class MainController {
 			DrawerFactory.create(shape).draw(shape, canvas.getGraphicsContext2D());
 		} catch (Exception e) {
 			e.printStackTrace();
+			showAlert();
 		}
 	}
 
