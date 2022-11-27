@@ -1,5 +1,8 @@
 package app;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 public class Rectangle extends QGon {
 	public Rectangle(Point2D[] p) throws Exception {
 		super(p);
@@ -21,6 +24,14 @@ public class Rectangle extends QGon {
 	public double square() throws Exception {
 		return Point2D.sub(p[0], p[1]).abs() * Point2D.sub(p[1], p[2]).abs();
 	}
+
+	@Override
+    public DBObject toBson() {
+        DBObject rectangle = new BasicDBObject("type", type)
+            .append("data", toString());
+
+        return rectangle;
+    }
 
 	@Override
 	public String toString() {

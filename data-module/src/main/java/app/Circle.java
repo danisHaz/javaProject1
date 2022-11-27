@@ -2,6 +2,9 @@ package app;
 
 import java.lang.Math;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 public class Circle implements IShape {
 	private Point2D p;
 	private double r;
@@ -72,6 +75,14 @@ public class Circle implements IShape {
 			return false;
 		}
 		return s.cross(this);
+	}
+
+	@Override
+	public DBObject toBson() {
+		DBObject circle = new BasicDBObject("type", type)
+			.append("data", toString());
+		
+		return circle;
 	}
 	
 	@Override

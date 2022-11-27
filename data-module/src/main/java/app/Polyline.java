@@ -1,5 +1,8 @@
 package app;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 public class Polyline extends OpenFigure {
 	private int n;
 	private Point2D[] p;
@@ -91,6 +94,14 @@ public class Polyline extends OpenFigure {
 		}
 
 		return false;
+	}
+
+	@Override
+	public DBObject toBson() {
+		DBObject polyline = new BasicDBObject("type", type)
+			.append("data", toString());
+		
+		return polyline;
 	}
 
 	@Override

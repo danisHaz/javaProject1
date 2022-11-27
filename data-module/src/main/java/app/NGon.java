@@ -2,6 +2,9 @@ package app;
 
 import java.lang.Math;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 public class NGon implements IShape {
 	protected int n;
 	protected Point2D[] p;
@@ -119,6 +122,14 @@ public class NGon implements IShape {
 		}
 
 		return false;
+	}
+
+	@Override
+	public DBObject toBson() {
+		DBObject ngon = new BasicDBObject("type", type)
+			.append("data", toString());
+
+		return ngon;
 	}
 
 	@Override

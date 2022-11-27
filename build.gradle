@@ -9,6 +9,7 @@ subprojects {
     }
 
     dependencies {
+        implementation 'org.mongodb:mongo-java-driver:2.12.3'
         testImplementation 'junit:junit:4.12'
         testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.8.2")
     }

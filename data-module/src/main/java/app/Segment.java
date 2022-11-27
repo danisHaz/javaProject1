@@ -1,5 +1,8 @@
 package app;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 public class Segment extends OpenFigure {
 	private Point2D start;
 	private Point2D finish;
@@ -171,6 +174,14 @@ public class Segment extends OpenFigure {
 			return false;
 		}
 	}
+	
+	@Override
+    public DBObject toBson() {
+        DBObject segment = new BasicDBObject("type", type)
+            .append("data", toString());
+
+        return segment;
+    }
 
 	@Override
 	public String toString() {

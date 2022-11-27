@@ -3,9 +3,13 @@ package app;
 import java.lang.Exception;
 import java.lang.Math;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 public class Point {
 	protected int dim;
 	protected double[] x;
+	protected String type = "Point";
 
 	public int getDim() {
 		return dim;
@@ -193,6 +197,13 @@ public class Point {
 		}
 
 		return this;
+	}
+
+	public DBObject toBson() {
+		DBObject point = new BasicDBObject("type", type)
+			.append("data", toString());
+		
+		return point;
 	}
 
 	@Override

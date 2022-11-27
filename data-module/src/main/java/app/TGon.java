@@ -1,5 +1,8 @@
 package app;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+
 public class TGon extends NGon {
 	public TGon(Point2D[] p) throws Exception {
         super(p);
@@ -18,6 +21,14 @@ public class TGon extends NGon {
 		s += Math.sqrt(halfP * (halfP - a) * (halfP - b) * (halfP - c));
 		return s;
 	}
+
+	@Override
+    public DBObject toBson() {
+        DBObject tgon = new BasicDBObject("type", type)
+            .append("data", toString());
+
+        return tgon;
+    }
 
 	@Override
 	public String toString() {

@@ -2,7 +2,10 @@ package ui;
 
 import java.io.FileInputStream;
 import java.io.IOException;
- 
+
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +18,8 @@ public class Main extends Application {
 	}
 
 	private Pane root;
+	private MongoClient mongoClient = null;
+	private final String mongoClientUri = "mongodb://juvenal:geometrynoname@0.0.0.0/0";
 
 	public Pane getPane() { return root; }
 
@@ -23,6 +28,8 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader();
 		String fxmlDocPath = "./src/main/java/ui/Main.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+		mongoClient = new MongoClient(new MongoClientURI(mongoClientUri));
+		
 		loader.setController(new MainController(this));
 		root = (Pane) loader.load(fxmlStream);
 		
@@ -30,5 +37,10 @@ public class Main extends Application {
 		stage.setScene(scene);
 		stage.setTitle("Geometry");
 		stage.show();
+	}
+
+	@Override
+	public void stop() {
+		mongoClient.close();
 	}
 }
