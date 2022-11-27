@@ -19,9 +19,10 @@ public class Main extends Application {
 
 	private Pane root;
 	private MongoClient mongoClient = null;
-	private final String mongoClientUri = "mongodb://juvenal:geometrynoname@0.0.0.0/0";
+	private final String mongoClientUri = null;
 
 	public Pane getPane() { return root; }
+	public MongoClient getMongoClient() { return mongoClient; }
 
 	@Override
 	public void start(Stage stage) throws IOException {

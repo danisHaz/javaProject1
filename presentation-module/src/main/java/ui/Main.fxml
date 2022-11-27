@@ -11,7 +11,7 @@
 	minHeight="-Infinity" 
 	minWidth="-Infinity" 
 	prefHeight="400.0" 
-	prefWidth="600.0" 
+	prefWidth="630.0" 
 	xmlns="http://javafx.com/javafx/15.0.1" 
 	xmlns:fx="http://javafx.com/fxml/1" >
 	<children>
@@ -31,5 +31,7 @@
 	  <Button layoutX="450.0" layoutY="215.0" mnemonicParsing="false" onAction="#computeS" text="Compute Square" />
 	  <Button layoutX="450.0" layoutY="245.0" mnemonicParsing="false" onAction="#computeP" text="Compute Perimeter" />
 	  <Button layoutX="450.0" layoutY="275.0" mnemonicParsing="false" onAction="#checkIfCross" text="Check if cross" />
+	  <Button layoutX="450.0" layoutY="305.0" mnemonicParsing="false" onAction="#addToDatabase" text="Add figures to db" />
+	  <Button layoutX="450.0" layoutY="335.0" mnemonicParsing="false" onAction="#removeFromDatabase" text="Remove figures from db" />
    </children>
 </AnchorPane>
