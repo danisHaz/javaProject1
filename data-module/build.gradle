@@ -1,6 +1,12 @@
 plugins {
     id 'java-library'
     id 'java'
+    id "io.franzbecker.gradle-lombok" version '5.0.0'
+}
+
+lombok {
+	version = '1.18.4'
+	sha256 = ""
 }
 
 dependencies {
