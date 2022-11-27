@@ -1,6 +1,5 @@
 package ui.deserializers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import app.Circle;
