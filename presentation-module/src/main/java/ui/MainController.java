@@ -15,7 +15,8 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
+// import com.mongodb.DBCollection;
+import com.mongodb.ConnectionString;
 import com.mongodb.DBObject;
 
 import app.Circle;
@@ -356,19 +357,19 @@ public class MainController {
 
 	@FXML
 	private void addToDatabase() {
-		DBCollection mongCollection = getCollectionFromDB("Geometry", "Figures");
+		// DBCollection mongCollection = getCollectionFromDB("Geometry", "Figures");
 		// mongCollection.remove
 	}
 
 	@FXML
 	private void removeFromDatabase() {
-		DBCollection mongCollection = getCollectionFromDB("Geometry", "Figures");
-		mongCollection.remove(new BasicDBObject());
+		// DBCollection mongCollection = getCollectionFromDB("Geometry", "Figures");
+		// mongCollection.remove(new BasicDBObject());
 	}
 
-	private DBCollection getCollectionFromDB(String dbName, String collectionName) {
-		return mInst.getMongoClient().getDB(dbName).getCollection(collectionName);
-	}
+	// private DBCollection getCollectionFromDB(String dbName, String collectionName) {
+		// return mInst.getMongoClient().getDB(dbName).getCollection(collectionName);
+	// }
 
 	private void clearCanvas(GraphicsContext gc) {
 		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
