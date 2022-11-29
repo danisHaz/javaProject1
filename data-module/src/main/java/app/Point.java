@@ -5,14 +5,13 @@ import java.lang.Math;
 
 import org.bson.Document;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Point {
-	protected int dim;
+	@Getter @Setter protected int dim;
 	protected double[] x;
 	protected String type = "Point";
-
-	public int getDim() {
-		return dim;
-	}
 
 	public double[] getX() {
 		return x;

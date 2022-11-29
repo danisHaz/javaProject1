@@ -2,9 +2,12 @@ package app;
 
 import org.bson.Document;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Segment extends OpenFigure {
-	private Point2D start;
-	private Point2D finish;
+	@Getter @Setter private Point2D start;
+	@Getter @Setter private Point2D finish;
 	private String type;
 
 	@Override
@@ -18,23 +21,7 @@ public class Segment extends OpenFigure {
 		finish = new Point2D(b.getX(0), b.getX(1));
 		type = "Segment";
 	}
-
-	public Point2D getStart() {
-		return start;
-	}
-
-	public void setStart(Point2D p) {
-		start = p;
-	}
-
-	public Point2D getFinish() {
-		return finish;
-	}
-
-	public void setFinish(Point2D p) {
-		finish = p;
-	}
-
+	
 	@Override
 	public double length() throws Exception {
 		return (new Point2D(Point.sub(start, finish).getX())).abs();

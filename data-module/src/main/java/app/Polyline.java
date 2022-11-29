@@ -2,8 +2,11 @@ package app;
 
 import org.bson.Document;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Polyline extends OpenFigure {
-	private int n;
+	@Getter @Setter private int n;
 	private Point2D[] p;
 	private String type;
 
@@ -17,10 +20,6 @@ public class Polyline extends OpenFigure {
 		}
 		this.n = p.length;
 		type = "Polyline";
-	}
-
-	public int getN() {
-		return n;
 	}
 
 	public Point2D[] getP() {

@@ -39,9 +39,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import lombok.extern.java.Log;
 import ui.deserializers.IfigureFactory;
 import ui.drawers.DrawerFactory;
 
+@Log
 public class MainController {
 	
 	private final String fileName = "./src/main/java/ui/figures.txt";
@@ -70,6 +72,7 @@ public class MainController {
     }
 
 	public void moveFigure(int pos, String type, double[] args) {
+		log.severe(String.format("Move figure: %s", type));
 		try {
 			switch (type) {
 				case "Rot":
@@ -91,6 +94,7 @@ public class MainController {
 
 	// callback func
 	public void countByPos(int pos, boolean type) {
+		log.severe("Count perimeter or square by position");
 		clearCanvasAndDrawAll(canvas.getGraphicsContext2D(), new IShape[] {list.get(pos)});
 
 		answer = new TextField();
@@ -112,6 +116,7 @@ public class MainController {
 
 	// callback func
 	public void setIfCross(IShape first, IShape second) {
+		log.severe("Check if cross");
 		clearCanvasAndDrawAll(canvas.getGraphicsContext2D(), new IShape[] {first, second});
 
 		answer = new TextField();
@@ -131,17 +136,20 @@ public class MainController {
 
 	// callback func
 	public void removeFigureByPosition(int pos) {
+		log.severe("Remove figure");
 		list.remove(pos);
 		clearCanvasAndDrawAll(canvas.getGraphicsContext2D(), null);
 	}
 
 	public void addCircle(double[] coords) throws Exception {
+		log.severe("Add Circle");
 		double r = coords[2];
 		Point2D point = new Point2D(coords[0], coords[1]);
 		addToListAndDraw(new Circle(point, r));
 	}
 
 	public void addNGon(double[] coords) throws Exception {
+		log.severe("Add NGon");
 		int n = coords.length / 2;
 		Point2D[] points = new Point2D[n];
 		for (int i = 0; i < coords.length; i += 2) {
@@ -152,6 +160,7 @@ public class MainController {
 	}
 
 	public void addQGon(double[] coords) throws Exception {
+		log.severe("Add QGon");
 		Point2D[] points = new Point2D[4];
 		for (int i = 0; i < coords.length; i += 2) {
 			points[i / 2] = new Point2D(coords[i], coords[i + 1]);
@@ -160,6 +169,7 @@ public class MainController {
 	}
 
 	public void addRectangle(double[] coords) throws Exception {
+		log.severe("Add rectanle");
 		Point2D[] points = new Point2D[4];
 		for (int i = 0; i < coords.length; i += 2) {
 			points[i / 2] = new Point2D(coords[i], coords[i + 1]);
@@ -168,6 +178,7 @@ public class MainController {
 	}
 
 	public void addTrapeze(double[] coords) throws Exception {
+		log.severe("Add trapeze");
 		Point2D[] points = new Point2D[4];
 		for (int i = 0; i < coords.length; i += 2) {
 			points[i / 2] = new Point2D(coords[i], coords[i + 1]);
@@ -176,6 +187,7 @@ public class MainController {
 	}
 
 	public void addPolyline(double[] coords) throws Exception {
+		log.severe("Add polyline");
 		int n = coords.length / 2;
 		Point2D[] points = new Point2D[n];
 		for (int i = 0; i < coords.length; i += 2) {
@@ -185,6 +197,7 @@ public class MainController {
 	}
 
 	public void addTGon(double[] coords) throws Exception {
+		log.severe("Add TGon");
 		int n = 3;
 		Point2D[] points = new Point2D[n];
 		for (int i = 0; i < coords.length; i += 2) {
@@ -195,6 +208,7 @@ public class MainController {
 	}
 
 	public void addSegment(double[] coords) throws Exception {
+		log.severe("Add segment");
 		addToListAndDraw(new Segment(new Point2D(coords[0], coords[1]),
 			new Point2D(coords[2], coords[3])));
 	}
@@ -222,6 +236,7 @@ public class MainController {
 	@FXML
 	private void initialize() 
 	{
+		log.severe("Clearing canvas");
 		clearCanvas(canvas.getGraphicsContext2D());
 	}
 
@@ -239,11 +254,13 @@ public class MainController {
 
 	@FXML
 	private void saveToFile() {
+		log.severe("Save to text file");
 		writeToFile();	
 	}
 	
 	@FXML
 	private void uploadFromFile() {
+		log.severe("Upload from text file");
 		File file = new File("./src/main/java/ui/figures.txt");
 		FileInputStream fstream = null;
 		try {
@@ -280,6 +297,7 @@ public class MainController {
 
 	@FXML
 	private void saveAsImg() {
+		log.severe("Save as image");
 		SnapshotParameters sp = new SnapshotParameters();
 		sp.setFill(Color.TRANSPARENT);
 		WritableImage wi = new WritableImage((int)(canvas.getWidth()), (int)(canvas.getHeight()));
@@ -356,6 +374,7 @@ public class MainController {
 
 	@FXML
 	private void addToDatabase() {
+		log.severe("Add to database");
 		MongoCollection<Document> mongoCollection = mInst.getDb().getCollection(null);
 		mongoCollection.drop();
 
@@ -366,6 +385,7 @@ public class MainController {
 
 	@FXML
 	private void retrieveFromDatabase() {
+		log.severe("Retrieve from database");
 		MongoCollection<Document> mongoCollection = mInst.getDb().getCollection(null);
 		mongoCollection.find().forEach((document) -> {
 			Object data = document.get("data");

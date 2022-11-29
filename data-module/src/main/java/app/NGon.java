@@ -4,8 +4,11 @@ import java.lang.Math;
 
 import org.bson.Document;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class NGon implements IShape {
-	protected int n;
+	@Getter @Setter protected int n;
 	protected Point2D[] p;
 	protected String type;
 
@@ -21,10 +24,6 @@ public class NGon implements IShape {
 			this.p[i] = new Point2D(p[i].getX(0), p[i].getX(1));
 		}
 		type = "NGon";
-	}
-
-	public int getN() {
-		return n;
 	}
 
 	public Point2D[] getP() {

@@ -4,9 +4,12 @@ import java.lang.Math;
 
 import org.bson.Document;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Circle implements IShape {
-	private Point2D p;
-	private double r;
+	@Getter @Setter private Point2D p;
+	@Getter @Setter private double r;
 	private String type;
 
 	@Override
@@ -17,22 +20,6 @@ public class Circle implements IShape {
 		this.r = r;
 		
 		type = "Circle"; 
-	}
-
-	public Point2D getP() {
-		return p;
-	}
-
-	public double getR() {
-		return r;
-	}
-
-	public void setP(Point2D p) {
-		this.p = p;
-	}
-
-	public void setR(double r) {
-		this.r = r;
 	}
 
 	@Override
