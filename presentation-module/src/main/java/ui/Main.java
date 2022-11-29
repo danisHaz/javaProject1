@@ -26,7 +26,7 @@ public class Main extends Application {
 	private MongoDb mongodb = null;
 	private MongoClient client = null;
 	private MongoClientSettings mongoSettings = null;
-	private final ConnectionString mongoClientUri = new ConnectionString("mongodb+srv://juvenal:geometrynoname@javageometryclustrer.yzcxxso.mongodb.net/?retryWrites=true&w=majority");
+	private final ConnectionString mongoClientUri = new ConnectionString("mongodb+srv://<login>:<password>@javageometryclustrer.yzcxxso.mongodb.net/?retryWrites=true&w=majority");
 
 	public Pane getPane() { return root; }
 	public MongoDb getDb() { return mongodb; }

@@ -357,7 +357,7 @@ public class MainController {
 	@FXML
 	private void addToDatabase() {
 		MongoCollection<Document> mongoCollection = mInst.getDb().getCollection(null);
-		mongoCollection.deleteMany(new Document());
+		mongoCollection.drop();
 
 		list.forEach((shape) -> {
 			mongoCollection.insertOne(shape.toBson());
@@ -365,9 +365,20 @@ public class MainController {
 	}
 
 	@FXML
-	private void removeFromDatabase() {
+	private void retrieveFromDatabase() {
 		MongoCollection<Document> mongoCollection = mInst.getDb().getCollection(null);
-		mongoCollection.drop();
+		mongoCollection.find().forEach((document) -> {
+			Object data = document.get("data");
+			if (data instanceof String) {
+				String buildString = (String)data;
+				IShape restoredShape = IfigureFactory.create(buildString);
+				if (restoredShape != null) {
+					addToListAndDraw(restoredShape);
+				} else {
+					System.out.println("Data is invalid");
+				}
+			}
+		});
 	}
 
 	private void clearCanvas(GraphicsContext gc) {

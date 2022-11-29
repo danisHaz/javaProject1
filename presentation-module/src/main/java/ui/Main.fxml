@@ -32,6 +32,6 @@
 	  <Button layoutX="450.0" layoutY="245.0" mnemonicParsing="false" onAction="#computeP" text="Compute Perimeter" />
 	  <Button layoutX="450.0" layoutY="275.0" mnemonicParsing="false" onAction="#checkIfCross" text="Check if cross" />
 	  <Button layoutX="450.0" layoutY="305.0" mnemonicParsing="false" onAction="#addToDatabase" text="Add figures to db" />
-	  <Button layoutX="450.0" layoutY="335.0" mnemonicParsing="false" onAction="#removeFromDatabase" text="Remove figures from db" />
+	  <Button layoutX="450.0" layoutY="335.0" mnemonicParsing="false" onAction="#retrieveFromDatabase" text="Get figures from db" />
    </children>
 </AnchorPane>
