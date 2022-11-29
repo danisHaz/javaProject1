@@ -2,8 +2,7 @@ package app;
 
 import java.lang.Math;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+import org.bson.Document;
 
 public class NGon implements IShape {
 	protected int n;
@@ -125,8 +124,8 @@ public class NGon implements IShape {
 	}
 
 	@Override
-	public DBObject toBson() {
-		DBObject ngon = new BasicDBObject("type", type)
+	public Document toBson() {
+		Document ngon = new Document("type", type)
 			.append("data", toString());
 
 		return ngon;

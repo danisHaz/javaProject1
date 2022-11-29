@@ -1,7 +1,6 @@
 package app;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+import org.bson.Document;
 
 public class Trapeze extends QGon {
 	public Trapeze(Point2D[] p) throws Exception {
@@ -15,8 +14,8 @@ public class Trapeze extends QGon {
 	}
 
 	@Override
-    public DBObject toBson() {
-        DBObject trapeze = new BasicDBObject("type", type)
+    public Document toBson() {
+        Document trapeze = new Document("type", type)
             .append("data", toString());
 
         return trapeze;

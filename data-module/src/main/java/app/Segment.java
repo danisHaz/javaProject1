@@ -1,7 +1,6 @@
 package app;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+import org.bson.Document;
 
 public class Segment extends OpenFigure {
 	private Point2D start;
@@ -176,8 +175,8 @@ public class Segment extends OpenFigure {
 	}
 	
 	@Override
-    public DBObject toBson() {
-        DBObject segment = new BasicDBObject("type", type)
+    public Document toBson() {
+        Document segment = new Document("type", type)
             .append("data", toString());
 
         return segment;

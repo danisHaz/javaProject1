@@ -1,7 +1,6 @@
 package app;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+import org.bson.Document;
 
 public class QGon extends NGon {
     public QGon(Point2D[] p) throws Exception {
@@ -17,8 +16,8 @@ public class QGon extends NGon {
     }
 
     @Override
-    public DBObject toBson() {
-        DBObject qgon = new BasicDBObject("type", type)
+    public Document toBson() {
+        Document qgon = new Document("type", type)
             .append("data", toString());
 
         return qgon;

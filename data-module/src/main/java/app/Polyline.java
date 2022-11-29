@@ -1,7 +1,6 @@
 package app;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+import org.bson.Document;
 
 public class Polyline extends OpenFigure {
 	private int n;
@@ -97,8 +96,8 @@ public class Polyline extends OpenFigure {
 	}
 
 	@Override
-	public DBObject toBson() {
-		DBObject polyline = new BasicDBObject("type", type)
+	public Document toBson() {
+		Document polyline = new Document("type", type)
 			.append("data", toString());
 		
 		return polyline;

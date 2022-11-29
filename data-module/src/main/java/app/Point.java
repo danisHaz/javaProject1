@@ -3,8 +3,7 @@ package app;
 import java.lang.Exception;
 import java.lang.Math;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+import org.bson.Document;
 
 public class Point {
 	protected int dim;
@@ -199,8 +198,8 @@ public class Point {
 		return this;
 	}
 
-	public DBObject toBson() {
-		DBObject point = new BasicDBObject("type", type)
+	public Document toBson() {
+		Document point = new Document("type", type)
 			.append("data", toString());
 		
 		return point;

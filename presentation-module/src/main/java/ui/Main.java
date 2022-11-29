@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import ui.repository.MongoDb;
  
 public class Main extends Application {
 	public static void main(String[] args) {
@@ -22,12 +23,13 @@ public class Main extends Application {
 	}
 
 	private Pane root;
-	private MongoClient mongoClient = null;
+	private MongoDb mongodb = null;
+	private MongoClient client = null;
 	private MongoClientSettings mongoSettings = null;
 	private final ConnectionString mongoClientUri = new ConnectionString("mongodb+srv://juvenal:geometrynoname@javageometryclustrer.yzcxxso.mongodb.net/?retryWrites=true&w=majority");
 
 	public Pane getPane() { return root; }
-	public MongoClient getMongoClient() { return mongoClient; }
+	public MongoDb getDb() { return mongodb; }
 
 	@Override
 	public void start(Stage stage) throws IOException {
@@ -37,7 +39,8 @@ public class Main extends Application {
 		mongoSettings = MongoClientSettings.builder()
 			.applyConnectionString(mongoClientUri)
 			.build();
-		mongoClient = MongoClients.create(mongoSettings);
+		client = MongoClients.create(mongoSettings);
+		mongodb = MongoDb.create(client, null);
 		
 		loader.setController(new MainController(this));
 		root = (Pane) loader.load(fxmlStream);
@@ -50,8 +53,10 @@ public class Main extends Application {
 
 	@Override
 	public void stop() {
-		mongoClient.close();
-		mongoClient = null;
+		client.close();
+		client = null;
 		mongoSettings = null;
+		MongoDb.clear();
+		mongodb = null;
 	}
 }

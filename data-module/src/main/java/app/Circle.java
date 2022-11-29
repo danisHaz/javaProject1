@@ -2,8 +2,7 @@ package app;
 
 import java.lang.Math;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+import org.bson.Document;
 
 public class Circle implements IShape {
 	private Point2D p;
@@ -78,8 +77,8 @@ public class Circle implements IShape {
 	}
 
 	@Override
-	public DBObject toBson() {
-		DBObject circle = new BasicDBObject("type", type)
+	public Document toBson() {
+		Document circle = new Document("type", type)
 			.append("data", toString());
 		
 		return circle;

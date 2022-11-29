@@ -1,7 +1,6 @@
 package app;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+import org.bson.Document;
 
 public class Rectangle extends QGon {
 	public Rectangle(Point2D[] p) throws Exception {
@@ -26,8 +25,8 @@ public class Rectangle extends QGon {
 	}
 
 	@Override
-    public DBObject toBson() {
-        DBObject rectangle = new BasicDBObject("type", type)
+    public Document toBson() {
+        Document rectangle = new Document("type", type)
             .append("data", toString());
 
         return rectangle;

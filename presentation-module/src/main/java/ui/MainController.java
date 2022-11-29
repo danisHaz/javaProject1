@@ -14,8 +14,9 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.bson.Document;
+
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 import app.Circle;
 import app.IShape;
@@ -355,38 +356,18 @@ public class MainController {
 
 	@FXML
 	private void addToDatabase() {
-		// DBCollection mongCollection = getCollectionFromDB("Geometry", "Figures");
-		// mongCollection.remove
+		MongoCollection<Document> mongoCollection = mInst.getDb().getCollection(null);
+		mongoCollection.deleteMany(new Document());
+
+		list.forEach((shape) -> {
+			mongoCollection.insertOne(shape.toBson());
+		});
 	}
 
 	@FXML
 	private void removeFromDatabase() {
-		MongoCollection mongoCollection = getCollectionFromDB("Geometry", "Figures");
+		MongoCollection<Document> mongoCollection = mInst.getDb().getCollection(null);
 		mongoCollection.drop();
-	}
-
-	private MongoCollection getCollectionFromDB(String dbName, String collectionName) {
-		MongoDatabase database = null;
-
-		try {
-			database = mInst.getMongoClient().getDatabase(dbName);
-		} catch (IllegalStateException e) {
-			mInst.getMongoClient(); // create database if not exists
-		}
-
-		MongoCollection collection = null;
-
-		try {
-			collection = database.getCollection(collectionName);
-		} catch (IllegalStateException e) {
-			database.createCollection(collectionName);
-			collection = database.getCollection(collectionName);
-
-			showAlert();
-			e.printStackTrace();
-		}
-
-		return collection;
 	}
 
 	private void clearCanvas(GraphicsContext gc) {
