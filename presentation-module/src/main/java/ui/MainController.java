@@ -14,10 +14,8 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import com.mongodb.BasicDBObject;
-// import com.mongodb.DBCollection;
-import com.mongodb.ConnectionString;
-import com.mongodb.DBObject;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 import app.Circle;
 import app.IShape;
@@ -363,13 +361,33 @@ public class MainController {
 
 	@FXML
 	private void removeFromDatabase() {
-		// DBCollection mongCollection = getCollectionFromDB("Geometry", "Figures");
-		// mongCollection.remove(new BasicDBObject());
+		MongoCollection mongoCollection = getCollectionFromDB("Geometry", "Figures");
+		mongoCollection.drop();
 	}
 
-	// private DBCollection getCollectionFromDB(String dbName, String collectionName) {
-		// return mInst.getMongoClient().getDB(dbName).getCollection(collectionName);
-	// }
+	private MongoCollection getCollectionFromDB(String dbName, String collectionName) {
+		MongoDatabase database = null;
+
+		try {
+			database = mInst.getMongoClient().getDatabase(dbName);
+		} catch (IllegalStateException e) {
+			mInst.getMongoClient(); // create database if not exists
+		}
+
+		MongoCollection collection = null;
+
+		try {
+			collection = database.getCollection(collectionName);
+		} catch (IllegalStateException e) {
+			database.createCollection(collectionName);
+			collection = database.getCollection(collectionName);
+
+			showAlert();
+			e.printStackTrace();
+		}
+
+		return collection;
+	}
 
 	private void clearCanvas(GraphicsContext gc) {
 		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());

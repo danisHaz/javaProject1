@@ -3,7 +3,11 @@ package ui;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-// import com.mongodb.MongoClient;
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+
 // import com.mongodb.MongoClientURI;
 
 import javafx.application.Application;
@@ -18,18 +22,22 @@ public class Main extends Application {
 	}
 
 	private Pane root;
-	// private MongoClient mongoClient = null;
-	private final String mongoClientUri = "mongodb://juvenal:geometrynoname@javageometryclustrer.yzcxxso.mongodb.net/GeometryDb";
+	private MongoClient mongoClient = null;
+	private MongoClientSettings mongoSettings = null;
+	private final ConnectionString mongoClientUri = new ConnectionString("mongodb+srv://juvenal:geometrynoname@javageometryclustrer.yzcxxso.mongodb.net/?retryWrites=true&w=majority");
 
 	public Pane getPane() { return root; }
-	// public MongoClient getMongoClient() { return mongoClient; }
+	public MongoClient getMongoClient() { return mongoClient; }
 
 	@Override
 	public void start(Stage stage) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		String fxmlDocPath = "./src/main/java/ui/Main.fxml";
 		FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
-		// mongoClient = new MongoClient(new MongoClientURI(mongoClientUri));
+		mongoSettings = MongoClientSettings.builder()
+			.applyConnectionString(mongoClientUri)
+			.build();
+		mongoClient = MongoClients.create(mongoSettings);
 		
 		loader.setController(new MainController(this));
 		root = (Pane) loader.load(fxmlStream);
@@ -42,6 +50,8 @@ public class Main extends Application {
 
 	@Override
 	public void stop() {
-		// mongoClient.close();
+		mongoClient.close();
+		mongoClient = null;
+		mongoSettings = null;
 	}
 }
