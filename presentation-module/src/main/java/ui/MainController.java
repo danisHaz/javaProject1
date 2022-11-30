@@ -424,19 +424,19 @@ public class MainController {
 	private void clearCanvasAndDrawAll(GraphicsContext gc, IShape[] redList) {
 		clearCanvas(gc);
 
-		for (int i = 0; i < list.size(); i++) {
+		list.forEach((shape) -> {
 			try {
-				if (findIn(list.get(i), redList)) {
+				if (findIn(shape, redList)) {
 					gc.setStroke(Color.RED);
-					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
+					DrawerFactory.create(shape).draw(shape, gc);
 					gc.setStroke(Color.BLACK);
 				} else {
-					DrawerFactory.create(list.get(i)).draw(list.get(i), gc);
+					DrawerFactory.create(shape).draw(shape, gc);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		});
 	}
 
 	private void writeToFile() {
