@@ -2,3 +2,4 @@ rootProject.name = "java_geometry_example"
 
 include 'presentation-module'
 include 'data-module'
+include 'web-application-module'

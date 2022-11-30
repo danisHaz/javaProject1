@@ -6,6 +6,9 @@ subprojects {
     repositories {
         jcenter()
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
@@ -15,7 +18,7 @@ subprojects {
     }
 
     application {
-        mainClass = 'ui.Main'
+        mainClass = 'spring.io.Application'
     }
 
     tasks.named('test') {
@@ -31,7 +34,7 @@ tasks.register('runUi') {
     dependsOn ':presentation-module:run'
 }
 
-defaultTasks 'runUi'
+// defaultTasks 'runUi'
 
 // task wrapper(type: Wrapper) {
 //     gradleVersion = '7.4.2'
