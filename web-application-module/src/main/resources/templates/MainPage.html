@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>Geometry example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+
+    <h2>Welcome</h2>
+    <div id="buttons" height="20" width="60">
+        <form action="#" th:action="@{/addFigures}" method="post">
+            <input type="submit" value="Add Figures" />
+        </form>
+        <!-- <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="386.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" /> -->
+        <!-- <Button layoutX="450.0" layoutY="212.0" onAction="#saveImage" text="Перенос изображния" /> -->
+        <form action="#" th:action="@{/saveToFilePage}" method="post">
+            <input type="submit" value="Save To File" />
+        </form>
+
+        <form action="#" th:action="@{/uploadFromFilePage}" method="post">
+            <input type="submit" value="Upload From File" />
+        </form>
+        
+        <form action="#" th:action="@{/saveAsImgPage}">
+            <input type="submit" value="Save As Image" />
+        </form>
+        
+        <form action="#" th:action="@{/dragFigure}">
+            <input type="submit" value="Save As Image" />
+        </form>
+        
+        <form action="#" th:action="@{/removeFigure}">
+            <input type="submit" value="Save As Image" />
+        </form>
+
+        <form action="#" th:action="@{/clear}">
+            <input type="submit" value="Clear" />
+        </form>
+
+        <form action="#" th:action="@{/computeS}">
+            <input type="submit" value="Compute Square" />
+        </form>
+
+        <form action="#" th:action="@{/computeP}">
+            <input type="submit" value="Compute Perimeter" />
+        </form>
+
+        <form action="#" th:action="@{/checkIfCross}">
+            <input type="submit" value="Check if cross" />
+        </form>
+
+        <form action="#" th:action="@{/addToDatabase}">
+          <input type="submit" value="Add figures to db" />
+        </form>
+
+        <form action="#" th:action="@{/retrieveFromDatabase}">
+          <input type="submit" value="Get figures from db" />
+        </form>
+    </div>
+  </body>
+
+</html>
